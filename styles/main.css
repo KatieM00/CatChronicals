@@ -1,0 +1,280 @@
+/* CSS Custom Properties for Theming */
+:root {
+  /* Color Palette */
+  --color-terracotta: #C4704F;
+  --color-sand: #F4E4BC;
+  --color-deep-blue: #2C5F7A;
+  --color-papyrus: #F7F3E3;
+  
+  /* Interactive Colors */
+  --color-highlight: #DAA520;
+  --color-success: #4CAF50;
+  --color-error: #FF6B6B;
+  --color-warning: #FFA726;
+  
+  /* Typography */
+  --font-pixel: 'Courier New', monospace;
+  --font-body: 'Arial', sans-serif;
+  --font-size-small: 14px;
+  --font-size-medium: 16px;
+  --font-size-large: 20px;
+  --font-size-xl: 24px;
+  
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  
+  /* Animation Timing */
+  --animation-fast: 0.2s;
+  --animation-medium: 0.3s;
+  --animation-slow: 0.5s;
+  --animation-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Layout */
+  --touch-target-min: 44px;
+  --border-radius: 8px;
+  --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.15);
+  --shadow-heavy: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Reset and Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--font-size-medium);
+  line-height: 1.5;
+  color: var(--color-deep-blue);
+  background-color: var(--color-papyrus);
+  overflow: hidden;
+}
+
+/* 60fps Animation Optimizations */
+* {
+  will-change: auto;
+}
+
+.animated {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Game Container - Full Screen CSS Grid Layout */
+.game-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-areas: "game-area";
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  overflow: hidden;
+}
+
+/* Layer System with Z-Index Management */
+.background-layer {
+  grid-area: game-area;
+  z-index: 1;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.cat-sprite-layer {
+  grid-area: game-area;
+  z-index: 2;
+  position: relative;
+  pointer-events: none;
+}
+
+.dialogue-layer {
+  grid-area: game-area;
+  z-index: 3;
+  position: relative;
+  pointer-events: none;
+}
+
+.ui-layer {
+  grid-area: game-area;
+  z-index: 4;
+  position: relative;
+}
+
+/* Responsive Breakpoints */
+@media (min-width: 768px) {
+  .game-container {
+    grid-template-areas: "cat-area dialogue-area";
+    grid-template-columns: 40% 60%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .game-container {
+    grid-template-columns: 35% 65%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .game-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* Animation Classes for 60fps Performance */
+.fade-in {
+  animation: fadeIn var(--animation-medium) var(--animation-ease) forwards;
+}
+
+.fade-out {
+  animation: fadeOut var(--animation-medium) var(--animation-ease) forwards;
+}
+
+.scale-in {
+  animation: scaleIn var(--animation-medium) var(--animation-ease) forwards;
+}
+
+.bounce {
+  animation: bounce var(--animation-slow) var(--animation-ease) infinite;
+}
+
+.shimmer {
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+/* Keyframe Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes scaleIn {
+  from { 
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to { 
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    box-shadow: 0 0 5px var(--color-highlight);
+  }
+  50% {
+    box-shadow: 0 0 20px var(--color-highlight), 0 0 30px var(--color-highlight);
+  }
+  100% {
+    box-shadow: 0 0 5px var(--color-highlight);
+  }
+}
+
+/* Accessibility Support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  :root {
+    --color-terracotta: #8B4513;
+    --color-sand: #F5F5DC;
+    --color-deep-blue: #000080;
+    --color-papyrus: #FFFFFF;
+  }
+}
+
+/* Focus Indicators for Accessibility */
+*:focus {
+  outline: 2px solid var(--color-highlight);
+  outline-offset: 2px;
+}
+
+/* Interactive Element Base Styles */
+.interactive {
+  cursor: pointer;
+  transition: transform var(--animation-fast) var(--animation-ease),
+              box-shadow var(--animation-fast) var(--animation-ease);
+  min-width: var(--touch-target-min);
+  min-height: var(--touch-target-min);
+}
+
+.interactive:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-medium);
+}
+
+.interactive:active {
+  transform: scale(0.98);
+}
+
+/* Utility Classes */
+.hidden {
+  display: none !important;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.full-height {
+  height: 100%;
+}
