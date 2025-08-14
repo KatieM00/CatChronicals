@@ -46,24 +46,27 @@ async function initGame() {
  */
 function showEngineStatus() {
   const uiLayer = gameEngine.getLayer('ui');
+  console.log('UI Layer found:', uiLayer);
   if (uiLayer) {
     uiLayer.innerHTML = `
       <div style="
-        position: absolute;
+        position: fixed;
         top: 20px;
         left: 20px;
-        background: var(--color-papyrus);
-        padding: var(--spacing-md);
-        border-radius: var(--border-radius);
-        box-shadow: var(--shadow-light);
-        font-family: var(--font-pixel);
-        color: var(--color-deep-blue);
+        background: #F7F3E3;
+        padding: 16px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        font-family: 'Courier New', monospace;
+        color: #2C5F7A;
+        z-index: 1000;
+        max-width: 300px;
       ">
-        <h3>🐱 Cat Chronicles Engine</h3>
-        <p>✅ Game Engine: Running</p>
-        <p>✅ Layers: Initialized</p>
-        <p>✅ Animation System: Ready</p>
-        <p>⏳ Ready for scene loading...</p>
+        <h3 style="margin: 0 0 10px 0;">🐱 Cat Chronicles Engine</h3>
+        <p style="margin: 5px 0;">✅ Game Engine: Running</p>
+        <p style="margin: 5px 0;">✅ Layers: Initialized</p>
+        <p style="margin: 5px 0;">✅ Animation System: Ready</p>
+        <p style="margin: 5px 0;">⏳ Ready for scene loading...</p>
       </div>
     `;
   }

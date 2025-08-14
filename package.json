@@ -1,0 +1,16 @@
+{
+  "name": "cat-chronicles-game",
+  "version": "1.0.0",
+  "description": "Educational Ancient Egypt Adventure Game",
+  "main": "index.html",
+  "scripts": {
+    "start": "http-server -a localhost -p 3000 -c-1",
+    "dev": "http-server -a localhost -p 3000 -c-1 -o"
+  },
+  "keywords": ["game", "education", "ancient-egypt", "adventure"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
