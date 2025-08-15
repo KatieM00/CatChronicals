@@ -1,3 +1,5 @@
+import { BackgroundManager } from './BackgroundManager.js';
+
 /**
  * Core Game Engine for Cat Chronicles
  * Handles initialization, game loop, and scene management
@@ -14,6 +16,7 @@ export class GameEngine {
     this.currentScene = null;
     this.gameContainer = null;
     this.layers = {};
+    this.backgroundManager = null;
     
     // Bind methods to maintain context
     this.gameLoop = this.gameLoop.bind(this);
@@ -47,6 +50,10 @@ export class GameEngine {
           throw new Error(`Layer '${name}' not found`);
         }
       }
+
+      // Initialize background manager
+      this.backgroundManager = new BackgroundManager(this);
+      this.backgroundManager.init();
 
       // Set up event listeners
       this.setupEventListeners();
@@ -240,6 +247,14 @@ export class GameEngine {
   }
 
   /**
+   * Get the background manager instance
+   * @returns {BackgroundManager} Background manager instance
+   */
+  getBackgroundManager() {
+    return this.backgroundManager;
+  }
+
+  /**
    * Clean up resources and event listeners
    */
   cleanup() {
@@ -250,6 +265,11 @@ export class GameEngine {
     // Remove event listeners
     window.removeEventListener('resize', this.handleResize);
     window.removeEventListener('orientationchange', this.handleResize);
+    
+    // Clean up background manager
+    if (this.backgroundManager) {
+      this.backgroundManager.cleanup();
+    }
     
     // Clean up current scene
     if (this.currentScene && typeof this.currentScene.cleanup === 'function') {

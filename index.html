@@ -15,6 +15,30 @@
         <div id="ui-layer" class="ui-layer"></div>
     </div>
     
+    <!-- Temporary diagnostics -->
+    <div id="mount-badge" style="position:fixed;top:10px;right:10px;background:#4CAF50;color:white;padding:8px;border-radius:4px;font-size:12px;z-index:9999;display:none;">✅ App mounted</div>
+    <div id="error-overlay" style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);color:white;padding:20px;font-family:monospace;font-size:14px;z-index:10000;display:none;overflow:auto;"></div>
+    
+    <script>
+    // Error overlay without DevTools
+    window.onerror = function(msg, file, line, col, error) {
+        var overlay = document.getElementById('error-overlay');
+        overlay.innerHTML = '<h3>Runtime Error:</h3><p>' + msg + '</p><p>File: ' + file + ':' + line + '</p><pre>' + (error ? error.stack : '') + '</pre>';
+        overlay.style.display = 'block';
+        return true;
+    };
+    
+    window.addEventListener('unhandledrejection', function(e) {
+        var overlay = document.getElementById('error-overlay');
+        overlay.innerHTML = '<h3>Unhandled Promise Rejection:</h3><p>' + e.reason + '</p><pre>' + (e.reason && e.reason.stack ? e.reason.stack : '') + '</pre>';
+        overlay.style.display = 'block';
+    });
+    
+    // Show mount badge when app loads
+    window.addEventListener('load', function() {
+        document.getElementById('mount-badge').style.display = 'block';
+    });
+    </script>
     <script type="module" src="scripts/main.js"></script>
 </body>
 </html>

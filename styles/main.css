@@ -1,6 +1,6 @@
 /* CSS Custom Properties for Theming */
 :root {
-  /* Color Palette */
+  /* Color Palette - Ancient Egypt Theme */
   --color-terracotta: #C4704F;
   --color-sand: #F4E4BC;
   --color-deep-blue: #2C5F7A;
@@ -12,33 +12,72 @@
   --color-error: #FF6B6B;
   --color-warning: #FFA726;
   
+  /* Extended Color Palette */
+  --color-gold: #FFD700;
+  --color-bronze: #CD7F32;
+  --color-stone: #8B7355;
+  --color-shadow: rgba(44, 95, 122, 0.3);
+  --color-overlay: rgba(0, 0, 0, 0.5);
+  
   /* Typography */
   --font-pixel: 'Courier New', monospace;
   --font-body: 'Arial', sans-serif;
+  --font-size-xs: 12px;
   --font-size-small: 14px;
   --font-size-medium: 16px;
   --font-size-large: 20px;
   --font-size-xl: 24px;
+  --font-size-xxl: 32px;
   
-  /* Spacing */
+  /* Spacing System */
   --spacing-xs: 4px;
   --spacing-sm: 8px;
   --spacing-md: 16px;
   --spacing-lg: 24px;
   --spacing-xl: 32px;
+  --spacing-xxl: 48px;
   
   /* Animation Timing */
   --animation-fast: 0.2s;
   --animation-medium: 0.3s;
   --animation-slow: 0.5s;
+  --animation-very-slow: 1s;
   --animation-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --animation-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
   
-  /* Layout */
+  /* Layout Properties */
   --touch-target-min: 44px;
   --border-radius: 8px;
+  --border-radius-large: 16px;
+  --border-width: 2px;
+  --border-width-thick: 4px;
+  
+  /* Shadow System */
   --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.1);
   --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.15);
   --shadow-heavy: 0 8px 32px rgba(0, 0, 0, 0.2);
+  --shadow-glow: 0 0 20px rgba(218, 165, 32, 0.4);
+  
+  /* Z-Index Scale */
+  --z-background: 1;
+  --z-parallax-far: 2;
+  --z-parallax-mid: 3;
+  --z-parallax-near: 4;
+  --z-hotspots: 5;
+  --z-cat-sprite: 10;
+  --z-dialogue: 20;
+  --z-ui: 30;
+  --z-modal: 40;
+  --z-tooltip: 50;
+  
+  /* Parallax Settings */
+  --parallax-strength: 0.5;
+  --parallax-smooth: 0.05;
+  
+  /* Performance Settings */
+  --gpu-acceleration: translateZ(0);
+  --will-change-transform: transform;
+  --will-change-opacity: opacity;
 }
 
 /* Reset and Base Styles */
@@ -87,56 +126,202 @@ body {
   overflow: hidden;
 }
 
-/* Layer System with Z-Index Management */
+/* Enhanced Layer System with Z-Index Management */
 .background-layer {
   grid-area: game-area;
   z-index: 1;
   position: relative;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  overflow: hidden;
 }
 
 .cat-sprite-layer {
   grid-area: game-area;
-  z-index: 2;
+  z-index: 10;
   position: relative;
   pointer-events: none;
 }
 
 .dialogue-layer {
   grid-area: game-area;
-  z-index: 3;
+  z-index: 20;
   position: relative;
   pointer-events: none;
 }
 
 .ui-layer {
   grid-area: game-area;
-  z-index: 4;
+  z-index: 30;
   position: relative;
 }
 
-/* Responsive Breakpoints */
-@media (min-width: 768px) {
+/* Parallax System */
+.parallax-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.parallax-layer {
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.parallax-far {
+  z-index: 1;
+}
+
+.parallax-mid {
+  z-index: 2;
+}
+
+.parallax-near {
+  z-index: 3;
+}
+
+.hotspots-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* Interactive Hotspots */
+.hotspot {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle, rgba(218, 165, 32, 0.8) 0%, rgba(218, 165, 32, 0.4) 70%, transparent 100%);
+  border: 3px solid var(--color-highlight);
+  border-radius: 50%;
+  pointer-events: auto;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  transition: all var(--animation-medium) var(--animation-ease);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.hotspot:hover {
+  transform: translate(-50%, -50%) scale(1.2);
+  box-shadow: 0 0 20px rgba(218, 165, 32, 0.6);
+}
+
+.hotspot:focus {
+  outline: 3px solid var(--color-highlight);
+  outline-offset: 5px;
+}
+
+.hotspot:active {
+  transform: translate(-50%, -50%) scale(0.9);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.7;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+/* Mobile-First Responsive Design */
+
+/* Mobile Portrait (default) */
+.game-container {
+  grid-template-areas: "game-area";
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}
+
+/* Mobile optimizations */
+@media (max-width: 767px) {
+  .hotspot {
+    width: var(--touch-target-min);
+    height: var(--touch-target-min);
+    border-width: var(--border-width-thick);
+  }
+  
+  .parallax-layer {
+    /* Reduce parallax on mobile for performance */
+    top: -5%;
+    left: -5%;
+    width: 110%;
+    height: 110%;
+  }
+  
+  /* Disable parallax on very small screens */
+  @media (max-width: 480px) {
+    .parallax-layer {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transform: none !important;
+    }
+  }
+}
+
+/* Tablet Portrait */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .game-container {
+    grid-template-areas: "cat-area dialogue-area";
+    grid-template-columns: 45% 55%;
+  }
+}
+
+/* Tablet Landscape & Small Desktop */
+@media (min-width: 1024px) and (max-width: 1199px) {
   .game-container {
     grid-template-areas: "cat-area dialogue-area";
     grid-template-columns: 40% 60%;
   }
 }
 
-@media (min-width: 1024px) {
-  .game-container {
-    grid-template-columns: 35% 65%;
-  }
-}
-
+/* Desktop */
 @media (min-width: 1200px) {
   .game-container {
+    grid-template-areas: "cat-area dialogue-area";
+    grid-template-columns: 35% 65%;
     max-width: 1400px;
     margin: 0 auto;
     left: 50%;
     transform: translateX(-50%);
+  }
+}
+
+/* Large Desktop */
+@media (min-width: 1600px) {
+  .game-container {
+    max-width: 1600px;
+    grid-template-columns: 30% 70%;
+  }
+}
+
+/* Landscape orientation adjustments */
+@media (orientation: landscape) and (max-height: 600px) {
+  .game-container {
+    grid-template-areas: "cat-area dialogue-area";
+    grid-template-columns: 50% 50%;
+  }
+  
+  .hotspot {
+    width: 36px;
+    height: 36px;
   }
 }
 
@@ -250,6 +435,69 @@ body {
   transform: scale(0.98);
 }
 
+/* Performance Optimizations */
+.gpu-accelerated {
+  transform: var(--gpu-acceleration);
+  will-change: var(--will-change-transform);
+}
+
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+/* Loading States */
+.loading {
+  position: relative;
+  overflow: hidden;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  animation: loading-shimmer 1.5s infinite;
+}
+
+@keyframes loading-shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Enhanced Interactive States */
+.interactive-enhanced {
+  position: relative;
+  overflow: hidden;
+  transition: all var(--animation-medium) var(--animation-ease);
+}
+
+.interactive-enhanced::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(218, 165, 32, 0.3) 0%, transparent 70%);
+  transition: all var(--animation-medium) var(--animation-ease);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.interactive-enhanced:hover::before {
+  width: 200px;
+  height: 200px;
+}
+
 /* Utility Classes */
 .hidden {
   display: none !important;
@@ -277,4 +525,144 @@ body {
 
 .full-height {
   height: 100%;
+}
+
+.no-select {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.pointer-events-none {
+  pointer-events: none;
+}
+
+.pointer-events-auto {
+  pointer-events: auto;
+}
+
+/* Safety: never allow roots to be fully hidden */
+html.hidden, body.hidden, #app.hidden, #root.hidden, #background-layer.hidden, #ui-layer.hidden {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* === Fallback layout to guarantee first paint === */
+html, body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+#background-layer {
+  position: relative;
+  display: block;
+  min-height: 100vh;
+  isolation: auto;
+}
+
+.parallax-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.parallax-layer {
+  position: absolute;
+  inset: 0;
+  transform: translate3d(0,0,0);
+}
+
+.hotspots-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: auto;
+}/* === 
+Grid-agnostic placement === */
+#background-layer, .background-layer, #ui-layer, .ui-layer {
+  grid-area: 1 / 1 / -1 / -1; /* row-start / col-start / row-end / col-end */
+}
+
+#game-container, .game-container {
+  display: grid;
+  min-height: 100vh;
+}
+
+#background-layer, .background-layer { 
+  position: relative; 
+  display: block; 
+  min-height: 100vh; 
+  isolation: auto; 
+  z-index: 0; 
+}
+
+#ui-layer, .ui-layer { 
+  position: relative; 
+  display: block; 
+  min-height: 0; 
+  z-index: 10; 
+  pointer-events: none; 
+}
+
+#error-overlay, .fullscreen-overlay, .backdrop { pointer-events: none; }/* =
+== Final grid fallback to force paint at all breakpoints === */
+#game-container, .game-container {
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr;
+  grid-auto-rows: minmax(0, 1fr);
+  grid-auto-columns: minmax(0, 1fr);
+  position: relative;
+}
+
+#background-layer, .background-layer,
+#ui-layer, .ui-layer {
+  grid-area: 1 / 1 / -1 / -1; /* span entire grid */
+}
+
+/* Ensure nothing collapses due to transforms or backface rules */
+.parallax-layer { backface-visibility: visible !important; transform-style: flat !important; }/* === S
+AFE WIDTH + NO CLIP ON ANCESTORS === */
+html, body, #game-container, .game-container {
+  margin: 0 !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+  overflow-x: hidden !important;
+  transform: none !important;
+  transform-origin: 50% 50% !important;
+  perspective: none !important;
+  filter: none !important;
+  zoom: normal !important;
+  clip: auto !important;
+  clip-path: none !important;
+  mask: none !important;
+  contain: none !important;
+}
+
+/* Ensure layers truly span the viewport */
+#background-layer, .background-layer, #ui-layer, .ui-layer {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  transform: none !important;
+}
+
+/* If grid is still active elsewhere, make layers span it too */
+#background-layer, .background-layer, #ui-layer, .ui-layer {
+  grid-area: 1 / 1 / -1 / -1 !important;
+}/*
+ Desktop override: neutralize centering + max-width clamp */
+@media (min-width: 1200px) {
+  #game-container, .game-container {
+    max-width: 100vw !important;
+    width: 100vw !important;
+    left: 0 !important;
+    right: 0 !important;
+    transform: none !important;
+    overflow: visible !important;
+  }
 }
