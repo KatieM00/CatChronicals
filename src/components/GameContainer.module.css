@@ -1,0 +1,72 @@
+.gameContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-areas: "game-area";
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  overflow: hidden;
+}
+
+.backgroundLayer {
+  grid-area: game-area;
+  z-index: var(--z-background);
+  position: relative;
+  overflow: hidden;
+}
+
+.catSpriteLayer {
+  grid-area: game-area;
+  z-index: var(--z-cat-sprite);
+  position: relative;
+  pointer-events: none;
+}
+
+.dialogueLayer {
+  grid-area: game-area;
+  z-index: var(--z-dialogue);
+  position: relative;
+  pointer-events: none;
+}
+
+.uiLayer {
+  grid-area: game-area;
+  z-index: var(--z-ui);
+  position: relative;
+}
+
+/* Responsive breakpoints */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .gameContainer {
+    grid-template-areas: "cat-area dialogue-area";
+    grid-template-columns: 45% 55%;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .gameContainer {
+    grid-template-areas: "cat-area dialogue-area";
+    grid-template-columns: 40% 60%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .gameContainer {
+    grid-template-areas: "cat-area dialogue-area";
+    grid-template-columns: 35% 65%;
+    max-width: 1400px;
+    margin: 0 auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@media (min-width: 1600px) {
+  .gameContainer {
+    max-width: 1600px;
+    grid-template-columns: 30% 70%;
+  }
+}

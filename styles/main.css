@@ -665,4 +665,51 @@ html, body, #game-container, .game-container {
     transform: none !important;
     overflow: visible !important;
   }
+}/
+* === Background scaling — clamp + contain === */
+:root {
+  --bg-max-width: 1280px; /* adjust later if needed */
+}
+
+#game-container, .game-container {
+  /* keep full width layout, but the image inside will be clamped */
+  margin: 0 auto;
+}
+
+.parallax-container {
+  position: relative !important;
+  width: 100% !important;
+  max-width: min(100vw, var(--bg-max-width)) !important;
+  margin: 0 auto !important;
+  overflow: hidden !important;
+}
+
+/* Make the middle layer show the image without over-zoom */
+.parallax-layer.parallax-mid {
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  /* Fit image inside the clamped container */
+  background-size: contain !important;
+}
+
+/* Keep layers static and stacked; no device-motion scaling */
+.parallax-layer {
+  position: absolute !important;
+  inset: 0 !important;
+  transform: none !important;
+  backface-visibility: visible !important;
+  transform-style: flat !important;
+}
+
+.parallax-layer.parallax-far  { z-index: 0 !important; opacity: 1 !important; }
+.parallax-layer.parallax-mid  { z-index: 1 !important; opacity: 1 !important; }
+.parallax-layer.parallax-near { z-index: 2 !important; opacity: 1 !important; }
+
+/* If earlier patches forced fixed+viewport on these, neutralize that */
+#background-layer, .background-layer, #ui-layer, .ui-layer {
+  position: relative !important;
+  /* NOT fixed */
+  inset: auto !important;
+  width: auto !important;
+  height: auto !important;
 }

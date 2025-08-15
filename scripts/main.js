@@ -1,4 +1,19 @@
 // Guard module execution
+const PARALLAX_ENABLED = false; // hard off
+
+// Named handler so we can remove it
+function handleParallax(e) {
+    const backgroundLayer = document.getElementById('background-layer');
+    if (!backgroundLayer) return;
+    const rect = backgroundLayer.getBoundingClientRect();
+    const mouseX = (e.clientX - rect.left - rect.width / 2) / rect.width * 30;
+    const mouseY = (e.clientY - rect.top - rect.height / 2) / rect.height * 20;
+    document.querySelectorAll('.parallax-layer').forEach(function(layer) {
+        const speed = parseFloat(layer.getAttribute('data-speed')) || 0.5;
+        layer.style.transform = 'translate3d(' + (mouseX * speed) + 'px, ' + (mouseY * speed) + 'px, 0)';
+    });
+}
+
 function init() {
     console.log('Cat Chronicles initializing...');
     
@@ -12,6 +27,15 @@ function init() {
         el.style.removeProperty('visibility');
         el.style.removeProperty('opacity');
     });
+    
+    // Ensure no lingering parallax transforms/listeners
+    document.removeEventListener('mousemove', handleParallax);
+    document.querySelectorAll('.parallax-layer').forEach(function(layer) {
+        layer.style.transform = 'none';
+    });
+    if (PARALLAX_ENABLED) {
+        document.addEventListener('mousemove', handleParallax);
+    }
     
     var backgroundLayer = document.getElementById('background-layer');
     
@@ -30,19 +54,6 @@ function init() {
 
         var mouseX = 0;
         var mouseY = 0;
-        
-        document.addEventListener('mousemove', function(e) {
-            var rect = backgroundLayer.getBoundingClientRect();
-            mouseX = (e.clientX - rect.left - rect.width / 2) / rect.width * 30;
-            mouseY = (e.clientY - rect.top - rect.height / 2) / rect.height * 20;
-            
-            var layers = document.querySelectorAll('.parallax-layer');
-            for (var i = 0; i < layers.length; i++) {
-                var layer = layers[i];
-                var speed = parseFloat(layer.getAttribute('data-speed')) || 0.5;
-                layer.style.transform = 'translate3d(' + (mouseX * speed) + 'px, ' + (mouseY * speed) + 'px, 0)';
-            }
-        });
     }
     console.log('Cat Chronicles initialized');
 }

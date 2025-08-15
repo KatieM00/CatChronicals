@@ -1,61 +1,82 @@
 # Implementation Plan
 
-- [x] 1. Set up project structure and core game engine
+## ✅ Migration to React + Vite Complete!
 
+**What's been migrated:**
+- ✅ Converted from vanilla HTML/CSS/JS to React + TypeScript + Vite
+- ✅ Set up component-based architecture with CSS Modules
+- ✅ Created GameContainer, BackgroundLayer, ParallaxLayer, HotspotsOverlay components
+- ✅ Implemented proper asset management with Vite
+- ✅ Added hot reload development experience
+- ✅ Fixed all CSS conflicts and module loading issues
 
+**To run the new version:**
+```bash
+npm run dev  # Development server on localhost:3000
+npm run build  # Production build
+```
 
-
-
-  - Create directory structure: assets/, components/, styles/, scripts/, backgrounds/
-  - Implement basic GameEngine class with initialization, update, and render methods
-  - Set up module system for component organization
-  - Create index.html with responsive viewport and CSS Grid layout structure
-  - Set up CSS custom properties for theming and 60fps animation system
+- [x] 1. Set up React + Vite project structure and core architecture
+  - ✅ Create Vite + React + TypeScript project with proper configuration
+  - ✅ Set up component-based directory structure: src/components/, src/styles/, src/hooks/, public/assets/
+  - ✅ Configure CSS Modules for scoped component styling
+  - ✅ Set up TypeScript configuration for type safety
+  - ✅ Create responsive viewport and CSS Grid layout structure
+  - ✅ Set up CSS custom properties for theming and animation system
   - _Requirements: 8.1, 8.4_
 
-- [x] 2. Build core UI framework with game container and layout system
-
-
-
-
-
-  - Create full-screen game container with CSS Grid for layout stability
-  - Implement dynamic background loading system from ./backgrounds/ folder
-  - Add parallax scrolling system for depth and interactive hotspots overlay
-  - Create z-index layering system (background < cat sprite < dialogue < UI)
-  - Implement CSS custom properties for easy theming
+- [x] 2. Build core UI framework with React components and layout system
+  - ✅ Create GameContainer component with CSS Grid for layout stability
+  - ✅ Implement BackgroundLayer component with dynamic background loading
+  - ✅ Build ParallaxLayer components for depth (disabled for performance)
+  - ✅ Create HotspotsOverlay component with interactive hotspots
+  - ✅ Implement z-index layering system (background < cat sprite < dialogue < UI)
+  - ✅ Set up CSS Modules for scoped component styling
   - _Requirements: 10.1, 10.7, 5.1_
 
-- [ ] 3. Implement cat sprite component with animation system
-  - Create cat sprite component with fixed position in bottom-left corner
-  - Implement idle animation loop with breathing and occasional tail swish
-  - Add sprite switching system for selected character with CSS filters
-  - Create confused/dizzy animation state for story moments
+- [ ] 3. Set up React-specific dependencies and tooling
+  - Install and configure React Router for navigation between game screens
+  - Add React DnD library for drag-and-drop functionality in lessons
+  - Set up React Context API for global state management
+  - Configure React DevTools for development debugging
+  - Add React Testing Library for component testing
+  - Set up ESLint and Prettier for code quality and formatting
+  - _Requirements: 8.1, 8.4_
+
+- [ ] 4. Implement CatSprite React component with animation system
+  - Create CatSprite component with fixed position in bottom-left corner
+  - Implement idle animation loop with breathing and occasional tail swish using CSS animations
+  - Add sprite switching system for selected character with CSS filters and React state
+  - Create confused/dizzy animation state for story moments using CSS classes
   - Ensure proper z-index positioning above background, below dialogue
+  - Use React hooks for animation state management
   - _Requirements: 1.1, 1.2, 5.8_
 
-- [ ] 4. Build dialogue system with dual modes and animations
-  - Create semi-transparent rounded rectangle dialogue overlay
-  - Implement two modes: narrow (story dialogue) and wide (lessons/activities)
-  - Add smooth transitions between dialogue modes
-  - Create typewriter text animation effect for story dialogue
-  - Implement click/tap to advance dialogue functionality
+- [ ] 4. Build DialogueSystem React component with dual modes and animations
+  - Create DialogueBox component with semi-transparent rounded rectangle styling
+  - Implement two modes: narrow (story dialogue) and wide (lessons/activities) using React state
+  - Add smooth transitions between dialogue modes with CSS transitions
+  - Create TypewriterText component for story dialogue animation effect
+  - Implement click/tap to advance dialogue functionality with React event handlers
+  - Use React Context for dialogue state management across components
   - _Requirements: 7.5, 10.3, 10.4, 5.4_
 
-- [ ] 5. Create comprehensive game state management system
-  - Implement GameState interface with selectedCharacter, currentLocation, completedLessons, journalPagesFound, lessonProgress, unlockedAreas, achievements
-  - Create save/load functionality using LocalStorage API
-  - Add state validation and corruption recovery mechanisms
-  - Implement progress tracking for lessons and journal collection
-  - Create achievement system for perfect builds and lesson completion
+- [ ] 5. Create comprehensive game state management with React Context
+  - Implement GameStateContext with selectedCharacter, currentLocation, completedLessons, journalPagesFound, lessonProgress, unlockedAreas, achievements
+  - Create custom hooks (useGameState, useProgress, useAchievements) for state access
+  - Add save/load functionality using LocalStorage API with React useEffect
+  - Implement state validation and corruption recovery mechanisms
+  - Create progress tracking for lessons and journal collection
+  - Build achievement system for perfect builds and lesson completion
   - _Requirements: 8.3, 11.6, 2.4_
 
-- [ ] 6. Build character selection UI with responsive design
-  - Implement character selection page layout using CSS Grid
-  - Create character card components with hover effects and scaling animations
-  - Add responsive breakpoints for mobile, tablet, and desktop layouts
-  - Implement "Start Adventure" button with disabled/enabled states
-  - Write CSS for cozy 16-bit aesthetic with warm color palette (#C4704F, #F4E4BC, #2C5F7A, #F7F3E3)
+- [ ] 6. Build CharacterSelection React component with responsive design
+  - Create CharacterSelection page component with CSS Grid layout
+  - Build CharacterCard components with hover effects and scaling animations
+  - Add responsive breakpoints for mobile, tablet, and desktop layouts using CSS Modules
+  - Implement StartAdventureButton component with disabled/enabled states using React state
+  - Apply cozy 16-bit aesthetic with warm color palette (#C4704F, #F4E4BC, #2C5F7A, #F7F3E3)
+  - Use React Router for navigation between character selection and game
   - _Requirements: 1.1, 10.1, 10.2, 5.1, 5.2_
 
 - [ ] 7. Create opening Ancient Egypt tomb scene
@@ -68,13 +89,14 @@
   - Implement click handlers for all interactive elements with accessibility support
   - _Requirements: 7.1, 7.2, 10.5, 10.6_
 
-- [ ] 8. Implement interactive elements and hotspot system
-  - Create red circle button components scattered on background for lesson triggers
-  - Add journal page collectibles as placeholder gold rectangles with shimmer effects
-  - Implement hover states with gentle bounce animations
-  - Create click/touch handlers for all interactive elements
-  - Add keyboard navigation support for accessibility
+- [ ] 8. Implement interactive elements and hotspot system with React components
+  - Create LessonButton component for red circle buttons scattered on background
+  - Build JournalPageCollectible component as gold rectangles with shimmer effects
+  - Implement hover states with gentle bounce animations using CSS Modules
+  - Create click/touch handlers using React event handlers and callbacks
+  - Add keyboard navigation support for accessibility with React focus management
   - Ensure 44px minimum touch targets for mobile devices
+  - Use React props for positioning and callback functions
   - _Requirements: 10.5, 10.6, 3.2, 10.2_
 
 - [ ] 9. Build journal page collection and tracking system
@@ -85,14 +107,14 @@
   - Implement journal page reward animations for lesson completion
   - _Requirements: 2.4, 2.7, 7.6_
 
-- [ ] 10. Build interactive hieroglyphics lesson system
-  - Create Introduction Phase: Wide dialogue box with "Let's learn to read like ancient Egyptians!" title
-  - Implement 5 basic hieroglyphic symbols with meanings (bird=A, water=N, eye=I, etc.) using scalable SVG
-  - Build interactive symbol matching game with drag-and-drop functionality
-  - Create Practice Activity: Present Egyptian name/word in hieroglyphics with multiple choice answers
-  - Add 3 questions to complete with visual feedback (green checkmark/red X) and progress bar
-  - Implement Success State: congratulations message, unlock notification, journal page reward animation
-  - Add state management for lesson progress and sound effect triggers
+- [ ] 10. Build HieroglyphicsLesson React component system
+  - Create IntroductionPhase component with wide dialogue box and "Let's learn to read like ancient Egyptians!" title
+  - Implement HieroglyphicSymbol components for 5 basic symbols (bird=A, water=N, eye=I, etc.) using SVG
+  - Build SymbolMatchingGame component with drag-and-drop functionality using React DnD
+  - Create PracticeActivity component with Egyptian name/word presentation and multiple choice
+  - Add QuestionComponent with visual feedback (green checkmark/red X) and ProgressBar component
+  - Implement SuccessState component with congratulations, unlock notification, and journal reward animation
+  - Use React hooks for lesson progress state management and sound effect triggers
   - _Requirements: 9.1, 9.4, 2.1, 2.6_
 
 - [ ] 11. Build Ancient Egyptian marketplace shopping lesson

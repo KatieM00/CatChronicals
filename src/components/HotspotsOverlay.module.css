@@ -1,0 +1,62 @@
+.hotspotsOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: var(--z-hotspots);
+  pointer-events: none;
+}
+
+.hotspot {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(
+    circle,
+    rgba(218, 165, 32, 0.8) 0%,
+    rgba(218, 165, 32, 0.4) 70%,
+    transparent 100%
+  );
+  border: 3px solid var(--color-highlight);
+  border-radius: 50%;
+  pointer-events: auto;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  transition: all var(--animation-medium) var(--animation-ease);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.hotspot:hover {
+  transform: translate(-50%, -50%) scale(1.2);
+  box-shadow: 0 0 20px rgba(218, 165, 32, 0.6);
+}
+
+.hotspot:focus {
+  outline: 3px solid var(--color-highlight);
+  outline-offset: 5px;
+}
+
+.hotspot:active {
+  transform: translate(-50%, -50%) scale(0.9);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.7;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 767px) {
+  .hotspot {
+    width: var(--touch-target-min);
+    height: var(--touch-target-min);
+    border-width: var(--border-width-thick);
+  }
+}

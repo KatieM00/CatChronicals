@@ -1,0 +1,103 @@
+/* CSS Custom Properties for Theming */
+:root {
+  /* Color Palette - Ancient Egypt Theme */
+  --color-terracotta: #C4704F;
+  --color-sand: #F4E4BC;
+  --color-deep-blue: #2C5F7A;
+  --color-papyrus: #F7F3E3;
+  
+  /* Interactive Colors */
+  --color-highlight: #DAA520;
+  --color-success: #4CAF50;
+  --color-error: #FF6B6B;
+  --color-warning: #FFA726;
+  
+  /* Extended Color Palette */
+  --color-gold: #FFD700;
+  --color-bronze: #CD7F32;
+  --color-stone: #8B7355;
+  --color-shadow: rgba(44, 95, 122, 0.3);
+  --color-overlay: rgba(0, 0, 0, 0.5);
+  
+  /* Typography */
+  --font-pixel: 'Courier New', monospace;
+  --font-body: 'Arial', sans-serif;
+  --font-size-xs: 12px;
+  --font-size-small: 14px;
+  --font-size-medium: 16px;
+  --font-size-large: 20px;
+  --font-size-xl: 24px;
+  --font-size-xxl: 32px;
+  
+  /* Spacing System */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
+  
+  /* Animation Timing */
+  --animation-fast: 0.2s;
+  --animation-medium: 0.3s;
+  --animation-slow: 0.5s;
+  --animation-very-slow: 1s;
+  --animation-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --animation-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  /* Layout Properties */
+  --touch-target-min: 44px;
+  --border-radius: 8px;
+  --border-radius-large: 16px;
+  --border-width: 2px;
+  --border-width-thick: 4px;
+  
+  /* Shadow System */
+  --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.15);
+  --shadow-heavy: 0 8px 32px rgba(0, 0, 0, 0.2);
+  --shadow-glow: 0 0 20px rgba(218, 165, 32, 0.4);
+  
+  /* Z-Index Scale */
+  --z-background: 1;
+  --z-parallax-far: 2;
+  --z-parallax-mid: 3;
+  --z-parallax-near: 4;
+  --z-hotspots: 5;
+  --z-cat-sprite: 10;
+  --z-dialogue: 20;
+  --z-ui: 30;
+  --z-modal: 40;
+  --z-tooltip: 50;
+}
+
+/* Reset and Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--font-size-medium);
+  line-height: 1.5;
+  color: var(--color-deep-blue);
+  background-color: var(--color-papyrus);
+  overflow: hidden;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+}
+
+.app {
+  width: 100%;
+  height: 100%;
+}

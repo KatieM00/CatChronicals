@@ -1,0 +1,13 @@
+.backgroundLayer {
+  grid-area: game-area;
+  z-index: var(--z-background);
+  position: relative;
+  overflow: hidden;
+}
+
+.parallaxContainer {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}

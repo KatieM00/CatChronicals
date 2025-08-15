@@ -1,0 +1,10 @@
+.uiLayer {
+  grid-area: game-area;
+  z-index: var(--z-ui);
+  position: relative;
+  pointer-events: none;
+}
+
+.uiLayer > * {
+  pointer-events: auto;
+}
