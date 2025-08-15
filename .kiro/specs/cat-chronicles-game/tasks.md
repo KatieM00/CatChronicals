@@ -34,22 +34,30 @@ npm run build  # Production build
   - ✅ Set up CSS Modules for scoped component styling
   - _Requirements: 10.1, 10.7, 5.1_
 
-- [ ] 3. Set up React-specific dependencies and tooling
-  - Install and configure React Router for navigation between game screens
-  - Add React DnD library for drag-and-drop functionality in lessons
-  - Set up React Context API for global state management
-  - Configure React DevTools for development debugging
-  - Add React Testing Library for component testing
-  - Set up ESLint and Prettier for code quality and formatting
+- [x] 3. Set up React-specific dependencies and tooling
+  - ✅ Install and configure React Router for navigation between game screens
+  - ✅ Add React DnD library for drag-and-drop functionality in lessons
+  - ✅ Set up React Context API for global state management (GameStateContext)
+  - ✅ Configure React DevTools for development debugging
+  - ✅ Add React Testing Library for component testing
+  - ✅ Set up ESLint and Prettier for code quality and formatting
+  - ✅ Configure React DevTools for development debugging
+  - ✅ Add React Testing Library for component testing
+  - ✅ Set up ESLint and Prettier for code quality and formatting
+  - ✅ Create custom hooks (useProgress, useAchievements) for state management
+  - ✅ Set up DnD provider with touch/desktop backend detection
+  - ✅ Add npm scripts for linting, formatting, and testing
   - _Requirements: 8.1, 8.4_
 
-- [ ] 4. Implement CatSprite React component with animation system
-  - Create CatSprite component with fixed position in bottom-left corner
-  - Implement idle animation loop with breathing and occasional tail swish using CSS animations
-  - Add sprite switching system for selected character with CSS filters and React state
-  - Create confused/dizzy animation state for story moments using CSS classes
-  - Ensure proper z-index positioning above background, below dialogue
-  - Use React hooks for animation state management
+- [x] 4. Implement CatSprite React component with animation system
+  - ✅ Create CatSprite component with fixed position in bottom-left corner
+  - ✅ Implement sprite sheet animation system with proper frame cycling
+  - ✅ Add character switching system for Mango, Snickers, Dr. Fluff, and Pickles with CSS filters
+  - ✅ Create confused/dizzy animation state for story moments using different sprite sheets
+  - ✅ Ensure proper z-index positioning above background, below dialogue
+  - ✅ Use React hooks for animation state management
+  - ✅ Create CharacterPreview component for character selection screen
+  - ✅ Fix sprite sheet background positioning for proper frame display
   - _Requirements: 1.1, 1.2, 5.8_
 
 - [ ] 4. Build DialogueSystem React component with dual modes and animations

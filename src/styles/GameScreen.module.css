@@ -1,0 +1,35 @@
+.gameContainer {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.catSpriteContainer {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  z-index: 10;
+}
+
+.uiOverlay {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  font-family: monospace;
+  z-index: 20;
+}
+
+.locationInfo {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.progressInfo {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}

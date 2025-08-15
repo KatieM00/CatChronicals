@@ -5,7 +5,7 @@
   width: 100vw;
   height: 100vh;
   display: grid;
-  grid-template-areas: "game-area";
+  grid-template-areas: 'game-area';
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
   overflow: hidden;
@@ -41,21 +41,21 @@
 /* Responsive breakpoints */
 @media (min-width: 768px) and (max-width: 1023px) {
   .gameContainer {
-    grid-template-areas: "cat-area dialogue-area";
+    grid-template-areas: 'cat-area dialogue-area';
     grid-template-columns: 45% 55%;
   }
 }
 
 @media (min-width: 1024px) and (max-width: 1199px) {
   .gameContainer {
-    grid-template-areas: "cat-area dialogue-area";
+    grid-template-areas: 'cat-area dialogue-area';
     grid-template-columns: 40% 60%;
   }
 }
 
 @media (min-width: 1200px) {
   .gameContainer {
-    grid-template-areas: "cat-area dialogue-area";
+    grid-template-areas: 'cat-area dialogue-area';
     grid-template-columns: 35% 65%;
     max-width: 1400px;
     margin: 0 auto;

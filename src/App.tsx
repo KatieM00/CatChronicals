@@ -1,12 +1,16 @@
 import React from 'react'
-import GameContainer from './components/GameContainer'
+import { GameStateProvider } from './contexts/GameStateContext'
+import DnDProvider from './components/DnDProvider'
+import Router from './components/Router'
 import './styles/globals.css'
 
 function App() {
   return (
-    <div className="app">
-      <GameContainer />
-    </div>
+    <GameStateProvider>
+      <DnDProvider>
+        <Router />
+      </DnDProvider>
+    </GameStateProvider>
   )
 }
 

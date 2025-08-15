@@ -12,7 +12,7 @@ const ParallaxLayer: React.FC<ParallaxLayerProps> = ({
   type,
   speed,
   backgroundImage,
-  style = {}
+  style = {},
 }) => {
   const layerStyle: CSSProperties = {
     ...style,
@@ -20,8 +20,8 @@ const ParallaxLayer: React.FC<ParallaxLayerProps> = ({
       backgroundImage: `url(${backgroundImage})`,
       backgroundSize: 'contain',
       backgroundPosition: 'center center',
-      backgroundRepeat: 'no-repeat'
-    })
+      backgroundRepeat: 'no-repeat',
+    }),
   }
 
   return (
