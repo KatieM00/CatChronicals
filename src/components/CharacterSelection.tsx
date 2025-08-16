@@ -12,24 +12,24 @@ export default function CharacterSelection() {
   const [clickedCharacter, setClickedCharacter] = useState<string | null>(null)
 
   const characters = [
-    { 
-      id: 'mango', 
-      name: 'Mango', 
+    {
+      id: 'mango',
+      name: 'Mango',
       description: 'Meow! I\'m ready for adventure! Let\'s explore ancient Egypt together!'
     },
-    { 
-      id: 'snickers', 
-      name: 'Snickers', 
+    {
+      id: 'snickers',
+      name: 'Snickers',
       description: 'Purr... I love solving puzzles and learning new things. Shall we investigate?'
     },
-    { 
-      id: 'drfluff', 
-      name: 'Dr. Fluff', 
+    {
+      id: 'drfluff',
+      name: 'Dr. Fluff',
       description: 'Fascinating! I\'m curious about how ancient civilizations worked. Let\'s study!'
     },
-    { 
-      id: 'pickles', 
-      name: 'Pickles', 
+    {
+      id: 'pickles',
+      name: 'Pickles',
       description: 'Mrow! I see beauty in ancient art and culture. Want to create something amazing?'
     },
   ]
@@ -37,11 +37,10 @@ export default function CharacterSelection() {
   const selectCharacter = (characterId: string) => {
     setClickedCharacter(characterId)
     dispatch({ type: 'SELECT_CHARACTER', character: characterId })
-    
+
     // Show attack animation briefly, then navigate
     setTimeout(() => {
-      dispatch({ type: 'CHANGE_LOCATION', location: 'egypt-tomb' })
-      navigate('/game/egypt-tomb')
+      navigate('/labintro')
     }, 1500) // Give time to see the attack animation
   }
 
@@ -64,72 +63,74 @@ export default function CharacterSelection() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Choose Your Cat Companion</h1>
-      <p className={styles.subtitle}>
-        Each cat has their own personality and will react differently to the ancient mysteries you'll discover together!
-      </p>
-      
-      <div className={styles.carouselContainer}>
-        {/* Navigation arrows */}
-        <button 
-          className={styles.navButton + ' ' + styles.prevButton}
-          onClick={prevCharacter}
-          disabled={characters.length <= 1}
-        >
-          ◀
-        </button>
+      <div className={styles.floatingWindow}>
+        <h1 className={styles.title}>Choose Your Cat Companion</h1>
+        <p className={styles.subtitle}>
+          Each cat has their own personality and will react differently to the ancient mysteries you'll discover together!
+        </p>
 
-        {/* Current character card */}
-        <div className={styles.characterCard}>
-          {/* Floating name */}
-          <h3 className={styles.characterName}>{currentCharacter.name}</h3>
-          
-          {/* Speech bubble with typewriter effect */}
-          <div className={styles.speechBubble}>
-            <TypewriterText 
-              text={currentCharacter.description}
-              speed={30}
-              isVisible={true}
-            />
-          </div>
-          
-          {/* Cat sprite */}
-          <div className={styles.characterImage}>
-            <CharacterPreview
-              characterId={currentCharacter.id}
-              animationState={getAnimationState()}
-              size="large"
-            />
-          </div>
-
-          {/* Select button */}
-          <button 
-            className={styles.selectButton}
-            onClick={() => selectCharacter(currentCharacter.id)}
+        <div className={styles.carouselContainer}>
+          {/* Navigation arrows */}
+          <button
+            className={styles.navButton + ' ' + styles.prevButton}
+            onClick={prevCharacter}
+            disabled={characters.length <= 1}
           >
-            Choose {currentCharacter.name}
+            <div className={styles.arrowLeft}></div>
+          </button>
+
+          {/* Current character card */}
+          <div className={styles.characterCard}>
+            {/* Floating name */}
+            <h3 className={styles.characterName}>{currentCharacter.name}</h3>
+
+            {/* Speech bubble with typewriter effect */}
+            <div className={styles.speechBubble}>
+              <TypewriterText
+                text={currentCharacter.description}
+                speed={30}
+                isVisible={true}
+              />
+            </div>
+
+            {/* Cat sprite */}
+            <div className={styles.characterImage}>
+              <CharacterPreview
+                characterId={currentCharacter.id}
+                animationState={getAnimationState()}
+                size="large"
+              />
+            </div>
+
+            {/* Select button */}
+            <button
+              className={styles.selectButton}
+              onClick={() => selectCharacter(currentCharacter.id)}
+            >
+              Choose {currentCharacter.name}
+            </button>
+          </div>
+
+          {/* Navigation arrows */}
+          <button
+            className={styles.navButton + ' ' + styles.nextButton}
+            onClick={nextCharacter}
+            disabled={characters.length <= 1}
+          >
+            <div className={styles.arrowRight}></div>
           </button>
         </div>
 
-        {/* Navigation arrows */}
-        <button 
-          className={styles.navButton + ' ' + styles.nextButton}
-          onClick={nextCharacter}
-          disabled={characters.length <= 1}
-        >
-          ▶
-        </button>
-      </div>
-
-      {/* Character indicators */}
-      <div className={styles.indicators}>
-        {characters.map((_, index) => (
-          <button
-            key={index}
-            className={`${styles.indicator} ${index === currentCharacterIndex ? styles.active : ''}`}
-            onClick={() => setCurrentCharacterIndex(index)}
-          />
-        ))}
+        {/* Character indicators */}
+        <div className={styles.indicators}>
+          {characters.map((_, index) => (
+            <button
+              key={index}
+              className={`${styles.indicator} ${index === currentCharacterIndex ? styles.active : ''}`}
+              onClick={() => setCurrentCharacterIndex(index)}
+            />
+          ))}
+        </div>
       </div>
     </div>
   )

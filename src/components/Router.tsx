@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { useGameState } from '../contexts/GameStateContext'
 import CharacterSelection from './CharacterSelection'
+import LabIntro from './LabIntro'
 import GameScreen from './GameScreen'
 
 export default function Router() {
@@ -14,6 +15,7 @@ export default function Router() {
           element={<Navigate to="/character-selection" replace />}
         />
         <Route path="/character-selection" element={<CharacterSelection />} />
+        <Route path="/labintro" element={<LabIntro />} />
         <Route
           path="/game/:location?"
           element={

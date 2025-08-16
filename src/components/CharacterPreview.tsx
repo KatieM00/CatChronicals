@@ -107,13 +107,10 @@ export default function CharacterPreview({
             width: `${animation.frames * 100}%`,
             height: '100%',
             transform: `translateX(${-currentFrame * (100 / animation.frames)}%)`,
+            imageRendering: 'pixelated',
+            objectFit: 'cover',
           }}
         />
-      </div>
-      
-      {/* Personality indicator */}
-      <div className={styles.personalityBadge}>
-        {character.personality}
       </div>
       
       {/* Animation effects */}
