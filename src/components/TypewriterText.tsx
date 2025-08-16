@@ -4,12 +4,14 @@ interface TypewriterTextProps {
   text: string
   speed?: number
   isVisible: boolean
+  onComplete?: () => void
 }
 
 export default function TypewriterText({ 
   text, 
   speed = 50, 
-  isVisible 
+  isVisible,
+  onComplete
 }: TypewriterTextProps) {
   const [displayedText, setDisplayedText] = useState('')
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -28,8 +30,10 @@ export default function TypewriterText({
       }, speed)
 
       return () => clearTimeout(timer)
+    } else if (currentIndex === text.length && onComplete) {
+      onComplete()
     }
-  }, [currentIndex, text, speed, isVisible])
+  }, [currentIndex, text, speed, isVisible, onComplete])
 
   // Reset when text changes
   useEffect(() => {

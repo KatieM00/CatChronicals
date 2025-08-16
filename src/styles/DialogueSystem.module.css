@@ -1,0 +1,130 @@
+.dialogueContainer {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: var(--z-dialogue);
+  max-width: 90vw;
+  width: 100%;
+  max-width: 800px;
+}
+
+.dialogueBox {
+  background: rgba(247, 243, 227, 0.95);
+  border: 4px solid var(--color-deep-blue);
+  border-radius: var(--border-radius-large);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-heavy);
+  backdrop-filter: blur(10px);
+  position: relative;
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+.storyMode {
+  max-width: 600px;
+  border-radius: var(--border-radius);
+}
+
+.lessonMode {
+  max-width: 800px;
+  border-radius: var(--border-radius-large);
+  padding: 2rem;
+}
+
+.dialogueContent {
+  font-size: var(--font-size-medium);
+  color: var(--color-deep-blue);
+  margin-bottom: 1rem;
+  min-height: 60px;
+}
+
+.dialogueActions {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.advanceButton {
+  background: var(--color-terracotta);
+  color: white;
+  border: 2px solid var(--color-deep-blue);
+  padding: 0.75rem 1.5rem;
+  font-size: var(--font-size-medium);
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: var(--border-radius);
+  transition: all var(--animation-medium) var(--animation-ease);
+  align-self: flex-end;
+  min-width: var(--touch-target-min);
+  font-family: var(--font-pixel);
+}
+
+.advanceButton:hover {
+  background: var(--color-highlight);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
+}
+
+.advanceButton:active {
+  transform: translateY(0);
+}
+
+.characterIndicator {
+  position: absolute;
+  top: -15px;
+  left: 20px;
+}
+
+.personalityBadge {
+  background: var(--color-deep-blue);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius-large);
+  font-size: var(--font-size-small);
+  font-weight: bold;
+  text-transform: capitalize;
+  font-family: var(--font-pixel);
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .dialogueContainer {
+    bottom: 10px;
+    max-width: 95vw;
+  }
+  
+  .dialogueBox {
+    padding: 1rem;
+  }
+  
+  .lessonMode {
+    padding: 1.5rem;
+  }
+  
+  .dialogueContent {
+    font-size: var(--font-size-small);
+    min-height: 50px;
+  }
+  
+  .advanceButton {
+    padding: 0.5rem 1rem;
+    font-size: var(--font-size-small);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .dialogueBox {
+    transition: none;
+  }
+  
+  .advanceButton {
+    transition: none;
+  }
+  
+  .advanceButton:hover {
+    transform: none;
+  }
+}
