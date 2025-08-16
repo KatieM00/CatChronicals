@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './CatSprite.module.css'
+import styles from '../styles/CatSprite.module.css'
 
 interface CatSpriteProps {
   animationState?: 'idle' | 'confused' | 'happy' | 'walk'
