@@ -41,3 +41,144 @@
   font-size: 18px;
   line-height: 1.5;
 }
+
+/* --- Additive styles for the interactive scene (scoped) --- */
+.catRow { 
+  position: absolute; 
+  left: 24px; 
+  right: 24px; 
+  bottom: 24px; 
+  display: flex; 
+  gap: 16px; 
+  align-items: flex-end; 
+}
+.catWrap { 
+  position: relative; 
+  width: 160px; 
+  height: 160px; 
+  display: grid; 
+  place-items: end; 
+}
+
+.speechWrap { max-width: 780px; }
+.speechBubble {
+  background: #ffffff;
+  color: #111;
+  border: 3px solid #1f2937; /* dark slate to match your frame */
+  border-radius: 16px;
+  padding: 12px 14px;
+  position: relative;
+  box-shadow: 0 6px 0 rgba(0,0,0,0.7);
+}
+.speechBubble::before { /* white tail */
+  content: '';
+  position: absolute;
+  left: -14px;
+  bottom: 22px;
+  width: 0; height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 14px solid #fff;
+}
+.speechBubble::after { /* outline for tail */
+  content: '';
+  position: absolute;
+  left: -17px;
+  bottom: 19px;
+  width: 0; height: 0;
+  border-top: 13px solid transparent;
+  border-bottom: 13px solid transparent;
+  border-right: 17px solid #1f2937;
+}
+
+.choices { margin-top: 8px; display: flex; gap: 10px; flex-wrap: wrap; }
+.choiceBtn {
+  cursor: pointer;
+  background: #ffe082;
+  color: #111;
+  border: 2px solid #1f2937;
+  border-radius: 12px;
+  padding: 8px 12px;
+  box-shadow: 0 3px 0 rgba(0,0,0,0.7);
+  font-weight: 800;
+}
+.choiceBtn:active { transform: translateY(2px); box-shadow: 0 1px 0 rgba(0,0,0,0.7); }
+.choiceBtn:disabled { opacity: .6; }
+
+.labBar {
+  position: absolute;
+  left: 24px; 
+  right: 24px; 
+  bottom: 136px; /* sits above the cat/speech */
+  display: flex; 
+  gap: 12px; 
+  flex-wrap: wrap; 
+  justify-content: center;
+}
+.itemBtn {
+  cursor: pointer;
+  background: rgba(241,245,249,0.95);
+  color: #111;
+  border: 2px solid #1f2937;
+  border-radius: 12px;
+  padding: 10px 12px;
+  box-shadow: 0 3px 0 rgba(0,0,0,0.7);
+  font-weight: 800;
+  backdrop-filter: blur(2px);
+}
+.itemBtn.danger { background: #fecaca; }
+.itemBtn:active { transform: translateY(2px); box-shadow: 0 1px 0 rgba(0,0,0,0.7); }
+
+.darkOverlay {
+  position: absolute; 
+  inset: 0; 
+  pointer-events: none; 
+  background: rgba(0,0,0,0.7);
+  transition: background 220ms ease;
+}
+
+/* CSS-only sprite animation (horizontal strip of square frames) */
+.sprite {
+  width: 100%;                
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+
+  --frames: 8;
+  background-size: calc(100% * var(--frames)) 100%;
+
+  animation: sprite-play 1s steps(var(--frames)) infinite;
+  image-rendering: pixelated;  
+}
+
+@keyframes sprite-play {
+  to { background-position: -100% 0; }
+}
+
+/* Portal FX remains subtle so the background art shines through */
+.portalIdle { position: absolute; inset: 0; pointer-events:none; }
+.portalStarting {
+  position: absolute; inset: 0; pointer-events:none;
+  background: radial-gradient(circle at 70% 30%, rgba(131, 240, 255, .45), transparent 40%),
+              radial-gradient(circle at 30% 70%, rgba(173, 127, 255, .35), transparent 45%);
+  animation: portal-pulse 600ms ease-in-out 2;
+  mix-blend-mode: screen;
+}
+.portalOpen {
+  position: absolute; inset: 0; pointer-events:none;
+  background: radial-gradient(circle at 50% 50%, rgba(131, 240, 255, .55), transparent 35%),
+              radial-gradient(circle at 50% 50%, rgba(173, 127, 255, .45), transparent 55%);
+  animation: portal-vortex 1.2s ease-in-out infinite;
+  mix-blend-mode: screen;
+}
+
+@keyframes portal-pulse { 
+  0% { transform: scale(0.98); opacity: 0.15 } 
+  50% { transform: scale(1.04); opacity: 0.8 } 
+  100% { transform: scale(1); opacity: 0.15 } 
+}
+@keyframes portal-vortex { 
+  0% { transform: scale(1) rotate(0deg); opacity: .3 } 
+  50% { transform: scale(1.05) rotate(5deg); opacity: .6 } 
+  100% { transform: scale(1) rotate(0deg); opacity: .3 } 
+}

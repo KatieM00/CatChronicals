@@ -41,7 +41,7 @@ export default function CharacterSelection() {
     // Show attack animation briefly, then navigate
     setTimeout(() => {
       navigate('/labintro')
-    }, 1500) // Give time to see the attack animation
+    }, 2000) // Give time to see the attack animation
   }
 
   const currentCharacter = characters[currentCharacterIndex]
