@@ -1,5 +1,9 @@
 /* CSS Custom Properties for Theming */
 :root {
+
+  /* One place to control the outer frame margin site-wide */
+  --frame-gutter: clamp(12px, 2vw, 32px);
+  
   /* Color Palette - Ancient Egypt Theme */
   --color-terracotta: #c4704f;
   --color-sand: #f4e4bc;
