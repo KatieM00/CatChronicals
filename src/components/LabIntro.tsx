@@ -79,7 +79,6 @@ export default function LabIntro() {
     setChoiceB(b);
   };
   
-
   // Clickable lab items -> cat responses
   const onClickBook = () =>
     speak("Oh, that's my favourite book! It's about this amazing archaeologist!")
@@ -112,28 +111,31 @@ export default function LabIntro() {
       <div className={styles.floatingWindow}>
         <div className={styles.windowContent}>
           {/* CAT + speech */}
-          <div className={styles.catRow}>
-            <div className={styles.catWrap}>
-              {/* CSS-only animated sprite */}
-              <div
-                className={styles.sprite}
-                style={{ backgroundImage: `url(${idleSrc})` }}
-              />
-            </div> 
-            <div className={styles.speechWrap}>
-              <div className={styles.speechBubble}>
-                <TypewriterText text={catLine} speed={24} isVisible={true} />
-              </div>
+     <div className={styles.catRow}>
+      <div className={styles.catWrap}>
+        <div
+          className={styles.sprite}
+          style={{ backgroundImage: `url(${idleSrc})` }}
+        />
+      </div>
+    </div>
 
-            {/* Only show reply choices while the intro convo is running */}
-            {!listeningForClick && (
-              <div className={styles.choices}>
-                <button className={styles.choiceBtn} onClick={advance} disabled={!choiceA}>{choiceA}</button>
-                <button className={styles.choiceBtn} onClick={advance} disabled={!choiceB}>{choiceB}</button>
-              </div>
-            )}
+    {/* SPEECH + CHOICES docked bottom-center */}
+      <div className={styles.speechDock}>
+        <div className={styles.speechWrap}>
+          <div className={styles.speechBubble}>
+            <TypewriterText text={catLine} speed={24} isVisible={true} />
           </div>
-        </div> 
+
+          {!listeningForClick && (
+            <div className={styles.choices}>
+            <button className={styles.choiceBtn} onClick={advance} disabled={!choiceA}>{choiceA}</button>
+            <button className={styles.choiceBtn} onClick={advance} disabled={!choiceB}>{choiceB}</button>
+          </div>
+        )}
+      </div>
+    </div>
+
           {/* INTERACTABLES */}
           {listeningForClick && (
             <div className={styles.labBar}>
