@@ -1,0 +1,142 @@
+.journalPage {
+  position: absolute;
+  width: 32px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: var(--z-hotspots);
+  transform: translate(-50%, -50%);
+  transition: all var(--animation-medium) var(--animation-ease);
+}
+
+.journalPage:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  animation: gentleBounce 0.6s ease-in-out;
+}
+
+.journalPage:focus {
+  outline: 3px solid var(--color-highlight);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.pageCore {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 215, 0, 0.9) 0%,
+    rgba(218, 165, 32, 0.8) 50%,
+    rgba(184, 134, 11, 0.7) 100%
+  );
+  border-radius: 2px;
+  box-shadow: 
+    0 2px 8px rgba(218, 165, 32, 0.4),
+    inset 0 1px 2px rgba(255, 255, 255, 0.3);
+  overflow: hidden;
+}
+
+.pageShimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 70%
+  );
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+.pageContent {
+  position: absolute;
+  inset: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pageLines {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 80%;
+}
+
+.line {
+  height: 1px;
+  background: rgba(139, 115, 85, 0.6);
+  border-radius: 1px;
+}
+
+.line:nth-child(1) {
+  width: 100%;
+}
+
+.line:nth-child(2) {
+  width: 85%;
+}
+
+.line:nth-child(3) {
+  width: 70%;
+}
+
+.glowEffect {
+  position: absolute;
+  inset: -8px;
+  border-radius: 6px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 215, 0, 0.3) 0%,
+    rgba(218, 165, 32, 0.2) 50%,
+    transparent 70%
+  );
+  animation: glow 3s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes glow {
+  0% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes gentleBounce {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.15);
+  }
+}
+
+/* Accessibility: Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .journalPage,
+  .pageShimmer,
+  .glowEffect {
+    animation: none;
+    transition: none;
+  }
+  
+  .journalPage:hover {
+    transform: translate(-50%, -50%);
+  }
+}

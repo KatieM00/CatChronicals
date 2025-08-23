@@ -1,14 +1,19 @@
 import { useParams } from 'react-router-dom'
 import { useGameState } from '../contexts/GameStateContext'
-import BackgroundLayer from './BackgroundLayer'
+import TombScene from './TombScene'
 import CatSprite from './CatSprite'
 import styles from '../styles/GameScreen.module.css'
 
 export default function GameScreen() {
   const { location } = useParams<{ location: string }>()
-  const { state } = useGameState()
+  const { state, dispatch } = useGameState()
 
-  const currentLocation = location || state.currentLocation
+  const currentLocation = location || state.currentLocation || 'egypt-tomb'
+
+  // Set current location if not already set
+  if (state.currentLocation !== currentLocation) {
+    dispatch({ type: 'CHANGE_LOCATION', location: currentLocation })
+  }
 
   // Determine cat animation state based on game context
   const getCatAnimationState = () => {
@@ -21,9 +26,18 @@ export default function GameScreen() {
     return 'idle'
   }
 
+  const renderScene = () => {
+    switch (currentLocation) {
+      case 'egypt-tomb':
+      default:
+        return <TombScene />
+    }
+  }
+
   return (
     <div className={styles.gameContainer}>
-      <BackgroundLayer />
+      {/* Scene Content */}
+      {renderScene()}
 
       {/* Cat Sprite with animations */}
       <div className={styles.catSpriteContainer}>

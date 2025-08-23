@@ -19,17 +19,38 @@
   position: relative;
   font-family: var(--font-body);
   line-height: 1.6;
+  transition: all var(--animation-medium) var(--animation-ease);
+  transform: translateY(0);
+  opacity: 1;
 }
 
 .storyMode {
   max-width: 600px;
   border-radius: var(--border-radius);
+  transition: max-width var(--animation-medium) var(--animation-ease),
+              padding var(--animation-medium) var(--animation-ease);
 }
 
 .lessonMode {
   max-width: 800px;
   border-radius: var(--border-radius-large);
   padding: 2rem;
+  transition: max-width var(--animation-medium) var(--animation-ease),
+              padding var(--animation-medium) var(--animation-ease);
+}
+
+.dialogueTitle {
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-terracotta);
+}
+
+.dialogueTitle h2 {
+  font-family: var(--font-pixel);
+  font-size: var(--font-size-large);
+  color: var(--color-deep-blue);
+  margin: 0;
+  text-align: center;
 }
 
 .dialogueContent {

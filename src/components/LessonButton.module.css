@@ -1,0 +1,152 @@
+.lessonButton {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: var(--z-hotspots);
+  transform: translate(-50%, -50%);
+  transition: all var(--animation-medium) var(--animation-ease);
+}
+
+.lessonButton:hover:not(.disabled) {
+  transform: translate(-50%, -50%) scale(1.1);
+  animation: gentleBounce 0.6s ease-in-out;
+}
+
+.lessonButton:focus {
+  outline: 3px solid var(--color-highlight);
+  outline-offset: 4px;
+  border-radius: 50%;
+}
+
+.lessonButton.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.buttonCore {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(218, 165, 32, 0.9) 0%,
+    rgba(196, 112, 79, 0.8) 70%,
+    rgba(196, 112, 79, 0.6) 100%
+  );
+  box-shadow: 
+    0 4px 12px rgba(196, 112, 79, 0.4),
+    inset 0 2px 4px rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttonRing {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid rgba(218, 165, 32, 0.6);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.lessonButton:hover .buttonRing {
+  border-color: rgba(218, 165, 32, 0.9);
+  animation: pulse 1s ease-in-out infinite;
+}
+
+.checkmark {
+  color: var(--color-success);
+  font-size: 18px;
+  font-weight: bold;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.completed .buttonCore {
+  background: radial-gradient(
+    circle,
+    rgba(76, 175, 80, 0.9) 0%,
+    rgba(56, 142, 60, 0.8) 70%,
+    rgba(56, 142, 60, 0.6) 100%
+  );
+  box-shadow: 
+    0 4px 12px rgba(76, 175, 80, 0.4),
+    inset 0 2px 4px rgba(255, 255, 255, 0.3);
+}
+
+.completed .buttonRing {
+  border-color: rgba(76, 175, 80, 0.6);
+}
+
+.tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 8px;
+  padding: 6px 12px;
+  background: rgba(44, 95, 122, 0.95);
+  color: var(--color-papyrus);
+  border-radius: var(--border-radius);
+  font-size: var(--font-size-small);
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--animation-fast) var(--animation-ease);
+  pointer-events: none;
+  z-index: var(--z-tooltip);
+}
+
+.tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-top-color: rgba(44, 95, 122, 0.95);
+}
+
+.lessonButton:hover .tooltip,
+.lessonButton:focus .tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-4px);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.9;
+  }
+}
+
+@keyframes gentleBounce {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.15);
+  }
+}
+
+/* Accessibility: Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .lessonButton,
+  .buttonRing,
+  .tooltip {
+    animation: none;
+    transition: none;
+  }
+  
+  .lessonButton:hover:not(.disabled) {
+    transform: translate(-50%, -50%);
+  }
+}

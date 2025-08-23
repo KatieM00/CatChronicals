@@ -67,21 +67,40 @@ export function useAchievements() {
   }
 
   const checkAchievements = () => {
+    const newlyEarned: string[] = []
+    
     // Auto-check for certain achievements
-    if (state.completedLessons.length >= 1) {
-      earnAchievement('first-lesson')
+    if (state.completedLessons.length >= 1 && earnAchievement('first-lesson')) {
+      newlyEarned.push('first-lesson')
     }
 
-    if (state.journalPagesFound.length >= 12) {
-      earnAchievement('journal-collector')
+    if (state.journalPagesFound.length >= 12 && earnAchievement('journal-collector')) {
+      newlyEarned.push('journal-collector')
     }
 
     if (
       state.completedLessons.length >= 3 &&
-      state.journalPagesFound.length >= 12
-    ) {
+      state.journalPagesFound.length >= 12 &&
       earnAchievement('completionist')
+    ) {
+      newlyEarned.push('completionist')
     }
+
+    return newlyEarned
+  }
+
+  const checkLessonAchievement = (lessonId: string, perfect: boolean = false) => {
+    if (perfect) {
+      switch (lessonId) {
+        case 'hieroglyphics':
+          return earnAchievement('perfect-hieroglyphics')
+        case 'marketplace':
+          return earnAchievement('master-trader')
+        case 'pyramid':
+          return earnAchievement('pyramid-architect')
+      }
+    }
+    return false
   }
 
   const getUnlockedAchievements = () => {
@@ -97,6 +116,7 @@ export function useAchievements() {
     achievements,
     earnAchievement,
     checkAchievements,
+    checkLessonAchievement,
     getUnlockedAchievements,
     getAchievementProgress,
   }

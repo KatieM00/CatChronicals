@@ -1,0 +1,79 @@
+.particleContainer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2; /* Above background, below interactive elements */
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.dust {
+  background: radial-gradient(
+    circle,
+    rgba(244, 228, 188, 0.8) 0%,
+    rgba(196, 112, 79, 0.4) 50%,
+    transparent 100%
+  );
+  animation: dustFloat linear infinite;
+}
+
+.sparkle {
+  background: radial-gradient(
+    circle,
+    rgba(255, 215, 0, 0.9) 0%,
+    rgba(218, 165, 32, 0.6) 50%,
+    transparent 100%
+  );
+  animation: sparkleFloat ease-in-out infinite;
+}
+
+@keyframes dustFloat {
+  0% {
+    transform: translateY(100vh) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: var(--particle-opacity, 0.6);
+  }
+  90% {
+    opacity: var(--particle-opacity, 0.6);
+  }
+  100% {
+    transform: translateY(-10vh) translateX(20px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes sparkleFloat {
+  0%, 100% {
+    transform: translateY(0) scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.2);
+    opacity: var(--particle-opacity, 0.8);
+  }
+}
+
+/* Accessibility: Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .particle {
+    animation: none;
+    opacity: 0.3;
+  }
+  
+  .dust {
+    animation: none;
+    opacity: 0.2;
+  }
+  
+  .sparkle {
+    animation: none;
+    opacity: 0.1;
+  }
+}
