@@ -1,4 +1,3 @@
-import React from 'react'
 import { GameStateProvider } from './contexts/GameStateContext'
 import DnDProvider from './components/DnDProvider'
 import Router from './components/Router'

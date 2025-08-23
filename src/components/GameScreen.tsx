@@ -23,7 +23,7 @@ export default function GameScreen() {
 
   return (
     <div className={styles.gameContainer}>
-      <BackgroundLayer backgroundName={currentLocation} />
+      <BackgroundLayer />
 
       {/* Cat Sprite with animations */}
       <div className={styles.catSpriteContainer}>

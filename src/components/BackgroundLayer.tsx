@@ -1,5 +1,4 @@
 import React from 'react'
-import ParallaxLayer from './ParallaxLayer'
 import HotspotsOverlay from './HotspotsOverlay'
 import styles from './BackgroundLayer.module.css'
 
@@ -30,22 +29,9 @@ const BackgroundLayer: React.FC = () => {
 
   return (
     <div className={styles.backgroundLayer}>
-      <div className={styles.parallaxContainer}>
-        <ParallaxLayer
-          type="far"
-          speed={0.2}
-          style={{
-            background:
-              'linear-gradient(135deg, #C4704F 0%, #F4E4BC 50%, #2C5F7A 100%)',
-            opacity: 0.6,
-          }}
-        />
-        <ParallaxLayer
-          type="mid"
-          speed={0.5}
-          backgroundImage="/Backgrounds/tombHall.png"
-        />
-        <ParallaxLayer type="near" speed={0.8} />
+      <div className={styles.backgroundContainer}>
+        <div className={styles.backgroundGradient} />
+        <div className={styles.backgroundImage} />
         <HotspotsOverlay hotspots={hotspots} />
       </div>
     </div>

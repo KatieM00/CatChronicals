@@ -64,9 +64,6 @@
 
   /* Z-Index Scale */
   --z-background: 1;
-  --z-parallax-far: 2;
-  --z-parallax-mid: 3;
-  --z-parallax-near: 4;
   --z-hotspots: 5;
   --z-cat-sprite: 10;
   --z-dialogue: 20;

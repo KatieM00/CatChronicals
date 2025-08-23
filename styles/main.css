@@ -5,20 +5,20 @@
   --color-sand: #F4E4BC;
   --color-deep-blue: #2C5F7A;
   --color-papyrus: #F7F3E3;
-  
+
   /* Interactive Colors */
   --color-highlight: #DAA520;
   --color-success: #4CAF50;
   --color-error: #FF6B6B;
   --color-warning: #FFA726;
-  
+
   /* Extended Color Palette */
   --color-gold: #FFD700;
   --color-bronze: #CD7F32;
   --color-stone: #8B7355;
   --color-shadow: rgba(44, 95, 122, 0.3);
   --color-overlay: rgba(0, 0, 0, 0.5);
-  
+
   /* Typography */
   --font-pixel: 'Courier New', monospace;
   --font-body: 'Arial', sans-serif;
@@ -28,7 +28,7 @@
   --font-size-large: 20px;
   --font-size-xl: 24px;
   --font-size-xxl: 32px;
-  
+
   /* Spacing System */
   --spacing-xs: 4px;
   --spacing-sm: 8px;
@@ -36,7 +36,7 @@
   --spacing-lg: 24px;
   --spacing-xl: 32px;
   --spacing-xxl: 48px;
-  
+
   /* Animation Timing */
   --animation-fast: 0.2s;
   --animation-medium: 0.3s;
@@ -44,36 +44,29 @@
   --animation-very-slow: 1s;
   --animation-ease: cubic-bezier(0.4, 0, 0.2, 1);
   --animation-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  
+
   /* Layout Properties */
   --touch-target-min: 44px;
   --border-radius: 8px;
   --border-radius-large: 16px;
   --border-width: 2px;
   --border-width-thick: 4px;
-  
+
   /* Shadow System */
   --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.1);
   --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.15);
   --shadow-heavy: 0 8px 32px rgba(0, 0, 0, 0.2);
   --shadow-glow: 0 0 20px rgba(218, 165, 32, 0.4);
-  
+
   /* Z-Index Scale */
   --z-background: 1;
-  --z-parallax-far: 2;
-  --z-parallax-mid: 3;
-  --z-parallax-near: 4;
   --z-hotspots: 5;
   --z-cat-sprite: 10;
   --z-dialogue: 20;
   --z-ui: 30;
   --z-modal: 40;
   --z-tooltip: 50;
-  
-  /* Parallax Settings */
-  --parallax-strength: 0.5;
-  --parallax-smooth: 0.05;
-  
+
   /* Performance Settings */
   --gpu-acceleration: translateZ(0);
   --will-change-transform: transform;
@@ -154,40 +147,7 @@ body {
   position: relative;
 }
 
-/* Parallax System */
-.parallax-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
 
-.parallax-layer {
-  position: absolute;
-  top: -10%;
-  left: -10%;
-  width: 120%;
-  height: 120%;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  will-change: transform;
-  backface-visibility: hidden;
-}
-
-.parallax-far {
-  z-index: 1;
-}
-
-.parallax-mid {
-  z-index: 2;
-}
-
-.parallax-near {
-  z-index: 3;
-}
 
 .hotspots-overlay {
   position: absolute;
@@ -229,10 +189,13 @@ body {
 }
 
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.7;
     transform: translate(-50%, -50%) scale(1);
   }
+
   50% {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1.1);
@@ -255,25 +218,8 @@ body {
     height: var(--touch-target-min);
     border-width: var(--border-width-thick);
   }
-  
-  .parallax-layer {
-    /* Reduce parallax on mobile for performance */
-    top: -5%;
-    left: -5%;
-    width: 110%;
-    height: 110%;
-  }
-  
-  /* Disable parallax on very small screens */
-  @media (max-width: 480px) {
-    .parallax-layer {
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      transform: none !important;
-    }
-  }
+
+
 }
 
 /* Tablet Portrait */
@@ -318,7 +264,7 @@ body {
     grid-template-areas: "cat-area dialogue-area";
     grid-template-columns: 50% 50%;
   }
-  
+
   .hotspot {
     width: 36px;
     height: 36px;
@@ -348,33 +294,51 @@ body {
 
 /* Keyframe Animations */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes fadeOut {
-  from { opacity: 1; }
-  to { opacity: 0; }
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
 }
 
 @keyframes scaleIn {
-  from { 
+  from {
     opacity: 0;
     transform: scale(0.8);
   }
-  to { 
+
+  to {
     opacity: 1;
     transform: scale(1);
   }
 }
 
 @keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
     transform: translateY(0);
   }
+
   40% {
     transform: translateY(-10px);
   }
+
   60% {
     transform: translateY(-5px);
   }
@@ -384,9 +348,11 @@ body {
   0% {
     box-shadow: 0 0 5px var(--color-highlight);
   }
+
   50% {
     box-shadow: 0 0 20px var(--color-highlight), 0 0 30px var(--color-highlight);
   }
+
   100% {
     box-shadow: 0 0 5px var(--color-highlight);
   }
@@ -421,7 +387,7 @@ body {
 .interactive {
   cursor: pointer;
   transition: transform var(--animation-fast) var(--animation-ease),
-              box-shadow var(--animation-fast) var(--animation-ease);
+    box-shadow var(--animation-fast) var(--animation-ease);
   min-width: var(--touch-target-min);
   min-height: var(--touch-target-min);
 }
@@ -458,18 +424,21 @@ body {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.4),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent);
   animation: loading-shimmer 1.5s infinite;
 }
 
 @keyframes loading-shimmer {
-  0% { left: -100%; }
-  100% { left: 100%; }
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 100%;
+  }
 }
 
 /* Enhanced Interactive States */
@@ -543,14 +512,20 @@ body {
 }
 
 /* Safety: never allow roots to be fully hidden */
-html.hidden, body.hidden, #app.hidden, #root.hidden, #background-layer.hidden, #ui-layer.hidden {
+html.hidden,
+body.hidden,
+#app.hidden,
+#root.hidden,
+#background-layer.hidden,
+#ui-layer.hidden {
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
 }
 
 /* === Fallback layout to guarantee first paint === */
-html, body {
+html,
+body {
   margin: 0;
   min-height: 100vh;
 }
@@ -562,53 +537,58 @@ html, body {
   isolation: auto;
 }
 
-.parallax-container {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  overflow: hidden;
-}
 
-.parallax-layer {
-  position: absolute;
-  inset: 0;
-  transform: translate3d(0,0,0);
-}
 
 .hotspots-overlay {
   position: absolute;
   inset: 0;
   pointer-events: auto;
-}/* === 
-Grid-agnostic placement === */
-#background-layer, .background-layer, #ui-layer, .ui-layer {
-  grid-area: 1 / 1 / -1 / -1; /* row-start / col-start / row-end / col-end */
 }
 
-#game-container, .game-container {
+/* === 
+Grid-agnostic placement === */
+#background-layer,
+.background-layer,
+#ui-layer,
+.ui-layer {
+  grid-area: 1 / 1 / -1 / -1;
+  /* row-start / col-start / row-end / col-end */
+}
+
+#game-container,
+.game-container {
   display: grid;
   min-height: 100vh;
 }
 
-#background-layer, .background-layer { 
-  position: relative; 
-  display: block; 
-  min-height: 100vh; 
-  isolation: auto; 
-  z-index: 0; 
+#background-layer,
+.background-layer {
+  position: relative;
+  display: block;
+  min-height: 100vh;
+  isolation: auto;
+  z-index: 0;
 }
 
-#ui-layer, .ui-layer { 
-  position: relative; 
-  display: block; 
-  min-height: 0; 
-  z-index: 10; 
-  pointer-events: none; 
+#ui-layer,
+.ui-layer {
+  position: relative;
+  display: block;
+  min-height: 0;
+  z-index: 10;
+  pointer-events: none;
 }
 
-#error-overlay, .fullscreen-overlay, .backdrop { pointer-events: none; }/* =
+#error-overlay,
+.fullscreen-overlay,
+.backdrop {
+  pointer-events: none;
+}
+
+/* =
 == Final grid fallback to force paint at all breakpoints === */
-#game-container, .game-container {
+#game-container,
+.game-container {
   display: grid;
   min-height: 100vh;
   grid-template-rows: 1fr;
@@ -618,15 +598,20 @@ Grid-agnostic placement === */
   position: relative;
 }
 
-#background-layer, .background-layer,
-#ui-layer, .ui-layer {
-  grid-area: 1 / 1 / -1 / -1; /* span entire grid */
+#background-layer,
+.background-layer,
+#ui-layer,
+.ui-layer {
+  grid-area: 1 / 1 / -1 / -1;
+  /* span entire grid */
 }
 
-/* Ensure nothing collapses due to transforms or backface rules */
-.parallax-layer { backface-visibility: visible !important; transform-style: flat !important; }/* === S
+/* === S
 AFE WIDTH + NO CLIP ON ANCESTORS === */
-html, body, #game-container, .game-container {
+html,
+body,
+#game-container,
+.game-container {
   margin: 0 !important;
   width: 100vw !important;
   max-width: 100vw !important;
@@ -643,7 +628,10 @@ html, body, #game-container, .game-container {
 }
 
 /* Ensure layers truly span the viewport */
-#background-layer, .background-layer, #ui-layer, .ui-layer {
+#background-layer,
+.background-layer,
+#ui-layer,
+.ui-layer {
   position: fixed !important;
   inset: 0 !important;
   width: 100vw !important;
@@ -652,12 +640,19 @@ html, body, #game-container, .game-container {
 }
 
 /* If grid is still active elsewhere, make layers span it too */
-#background-layer, .background-layer, #ui-layer, .ui-layer {
+#background-layer,
+.background-layer,
+#ui-layer,
+.ui-layer {
   grid-area: 1 / 1 / -1 / -1 !important;
-}/*
+}
+
+/*
  Desktop override: neutralize centering + max-width clamp */
 @media (min-width: 1200px) {
-  #game-container, .game-container {
+
+  #game-container,
+  .game-container {
     max-width: 100vw !important;
     width: 100vw !important;
     left: 0 !important;
@@ -665,48 +660,26 @@ html, body, #game-container, .game-container {
     transform: none !important;
     overflow: visible !important;
   }
-}/
-* === Background scaling — clamp + contain === */
-:root {
-  --bg-max-width: 1280px; /* adjust later if needed */
 }
 
-#game-container, .game-container {
+/ *===Background scaling — clamp+contain===*/:root {
+  --bg-max-width: 1280px;
+  /* adjust later if needed */
+}
+
+#game-container,
+.game-container {
   /* keep full width layout, but the image inside will be clamped */
   margin: 0 auto;
 }
 
-.parallax-container {
-  position: relative !important;
-  width: 100% !important;
-  max-width: min(100vw, var(--bg-max-width)) !important;
-  margin: 0 auto !important;
-  overflow: hidden !important;
-}
 
-/* Make the middle layer show the image without over-zoom */
-.parallax-layer.parallax-mid {
-  background-position: center center !important;
-  background-repeat: no-repeat !important;
-  /* Fit image inside the clamped container */
-  background-size: contain !important;
-}
-
-/* Keep layers static and stacked; no device-motion scaling */
-.parallax-layer {
-  position: absolute !important;
-  inset: 0 !important;
-  transform: none !important;
-  backface-visibility: visible !important;
-  transform-style: flat !important;
-}
-
-.parallax-layer.parallax-far  { z-index: 0 !important; opacity: 1 !important; }
-.parallax-layer.parallax-mid  { z-index: 1 !important; opacity: 1 !important; }
-.parallax-layer.parallax-near { z-index: 2 !important; opacity: 1 !important; }
 
 /* If earlier patches forced fixed+viewport on these, neutralize that */
-#background-layer, .background-layer, #ui-layer, .ui-layer {
+#background-layer,
+.background-layer,
+#ui-layer,
+.ui-layer {
   position: relative !important;
   /* NOT fixed */
   inset: auto !important;
