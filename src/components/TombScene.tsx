@@ -1,23 +1,30 @@
 import React, { useState, useEffect } from 'react'
 import { useGameState } from '../contexts/GameStateContext'
 import { useProgress } from '../hooks/useProgress'
+import { useJournal } from '../hooks/useJournal'
 import LessonButton from './LessonButton'
 import JournalPageCollectible from './JournalPageCollectible'
+import JournalButton from './JournalButton'
 import ParticleEffect from './ParticleEffect'
 import DialogueSystem from './DialogueSystem'
+import LessonController from './LessonController'
 import styles from './TombScene.module.css'
 
 const TombScene: React.FC = () => {
   const { state } = useGameState()
-  const { isLessonCompleted, collectJournalPage, canAccessLesson } = useProgress()
+  const { isLessonCompleted, canAccessLesson } = useProgress()
+  const { collectPage, getPagesInLocation } = useJournal()
   const [showDialogue, setShowDialogue] = useState(false)
   const [dialogueStep, setDialogueStep] = useState(0)
+  const [introductionComplete, setIntroductionComplete] = useState(false)
+  const [activeLessonId, setActiveLessonId] = useState<string | null>(null)
 
-  // Story dialogue for first visit
+  // Story dialogue for first visit - aligned with Requirement 7
   const storyDialogues = [
     "Oh no! Where am I? This place looks ancient... and very Egyptian!",
     "I can see hieroglyphics on the walls and strange treasures everywhere.",
-    "Maybe I should explore and learn about this place to find my way home!"
+    "Wait... what's this? A damaged journal with torn-out pages scattered around!",
+    "It looks like an ancient architect's journal... Maybe learning from these missing pages will help me find my way home!"
   ]
 
   // Show story dialogue on first visit
@@ -25,6 +32,10 @@ const TombScene: React.FC = () => {
     if (state.currentLocation === 'egypt-tomb' && state.completedLessons.length === 0) {
       setShowDialogue(true)
       setDialogueStep(0)
+      setIntroductionComplete(false)
+    } else {
+      // If not first visit, skip dialogue and allow interactions
+      setIntroductionComplete(true)
     }
   }, [state.currentLocation, state.completedLessons.length])
 
@@ -33,24 +44,44 @@ const TombScene: React.FC = () => {
       setDialogueStep(dialogueStep + 1)
     } else {
       setShowDialogue(false)
+      setIntroductionComplete(true) // Enable interactions after dialogue completes
     }
   }
 
   const handleLessonClick = (lessonId: string) => {
     if (canAccessLesson(lessonId)) {
-      // Navigate to lesson (placeholder for now)
-      console.log(`Starting lesson: ${lessonId}`)
-      // In a real implementation, this would navigate to the lesson component
-      alert(`Starting ${lessonId} lesson! (This will be implemented in future tasks)`)
+      // Check if we have the corresponding journal page
+      const requiredJournalPage = `architect-journal-${lessonId}`
+      const hasJournalPage = state.journalPagesFound.includes(requiredJournalPage)
+      
+      if (hasJournalPage) {
+        // Launch the lesson
+        setActiveLessonId(lessonId)
+      } else {
+        alert('You need to find the corresponding journal page first to unlock this knowledge!')
+      }
     } else {
-      alert('Complete previous lessons to unlock this one!')
+      alert('Find and study the architect\'s journal pages first to unlock this knowledge!')
     }
   }
 
+  const handleLessonComplete = (lessonId: string) => {
+    console.log(`Lesson ${lessonId} completed!`)
+    setActiveLessonId(null)
+    // The lesson completion is already handled by the LessonController
+  }
+
+  const handleLessonExit = () => {
+    setActiveLessonId(null)
+  }
+
   const handleJournalPageClick = (pageId: string) => {
-    collectJournalPage(pageId)
-    // Show sparkle effect
-    console.log(`Collected journal page: ${pageId}`)
+    const collected = collectPage(pageId)
+    if (collected) {
+      // Show sparkle effect and narrative context
+      console.log(`Collected architect's journal page: ${pageId}`)
+      // The journal system will handle the rest
+    }
   }
 
   const lessons = [
@@ -58,29 +89,32 @@ const TombScene: React.FC = () => {
       id: 'hieroglyphics',
       x: 25,
       y: 35,
-      label: 'Learn Hieroglyphics',
+      label: 'Hieroglyphics Knowledge',
+      description: 'Ancient symbols on the wall',
     },
     {
       id: 'marketplace',
       x: 60,
       y: 50,
-      label: 'Ancient Marketplace',
+      label: 'Trading Wisdom',
+      description: 'Treasure pile reveals bartering secrets',
     },
     {
       id: 'pyramid',
       x: 80,
       y: 70,
-      label: 'Build a Pyramid',
+      label: 'Building Mastery',
+      description: 'Stone tablet shows construction techniques',
     }
   ]
 
-  const journalPages = [
-    {
-      id: 'tomb-page-1',
-      x: 45,
-      y: 85,
-    }
-  ]
+  // Get journal pages available in this location
+  const availableJournalPages = getPagesInLocation('egypt-tomb').map(page => ({
+    id: page.id,
+    x: 45, // Position on screen
+    y: 85,
+    topic: page.topic
+  }))
 
   return (
     <div className={styles.tombScene}>
@@ -91,34 +125,47 @@ const TombScene: React.FC = () => {
         aria-label="Ancient Egyptian tomb interior with hieroglyphics and treasures"
       />
       
+      {/* Dialogue Mode Overlay - dims background during introduction */}
+      {showDialogue && (
+        <div className={styles.dialogueOverlay} />
+      )}
+      
       {/* Atmospheric Particles */}
       <ParticleEffect type="dust" count={12} isActive={true} />
       
-      {/* Lesson Buttons */}
-      {lessons.map((lesson) => (
-        <LessonButton
-          key={lesson.id}
-          id={lesson.id}
-          x={lesson.x}
-          y={lesson.y}
-          label={lesson.label}
-          onClick={() => handleLessonClick(lesson.id)}
-          isAccessible={canAccessLesson(lesson.id)}
-          isCompleted={isLessonCompleted(lesson.id)}
-        />
-      ))}
-      
-      {/* Journal Pages */}
-      {journalPages.map((page) => (
-        <JournalPageCollectible
-          key={page.id}
-          id={page.id}
-          x={page.x}
-          y={page.y}
-          onClick={() => handleJournalPageClick(page.id)}
-          isCollected={state.journalPagesFound.includes(page.id)}
-        />
-      ))}
+      {/* Interactive Elements - Only show after introduction dialogue */}
+      {introductionComplete && (
+        <>
+          {/* Lesson Buttons */}
+          {lessons.map((lesson) => (
+            <LessonButton
+              key={lesson.id}
+              id={lesson.id}
+              x={lesson.x}
+              y={lesson.y}
+              label={lesson.label}
+              onClick={() => handleLessonClick(lesson.id)}
+              isAccessible={canAccessLesson(lesson.id)}
+              isCompleted={isLessonCompleted(lesson.id)}
+            />
+          ))}
+          
+          {/* Journal Pages - Torn pages from the architect's journal */}
+          {availableJournalPages.map((page) => (
+            <JournalPageCollectible
+              key={page.id}
+              id={page.id}
+              x={page.x}
+              y={page.y}
+              onClick={() => handleJournalPageClick(page.id)}
+              isCollected={state.journalPagesFound.includes(page.id)}
+            />
+          ))}
+        </>
+      )}
+
+      {/* Journal Button - Always available */}
+      <JournalButton position="top-right" />
       
       {/* Story Dialogue */}
       {showDialogue && (
@@ -129,23 +176,16 @@ const TombScene: React.FC = () => {
           isVisible={showDialogue}
         />
       )}
-      
-      {/* Debug info - remove in production */}
-      <div style={{
-        position: 'absolute',
-        top: '10px',
-        left: '10px',
-        background: 'rgba(0,0,0,0.7)',
-        color: 'white',
-        padding: '8px',
-        fontSize: '12px',
-        zIndex: 100
-      }}>
-        Location: {state.currentLocation}<br/>
-        Lessons: {state.completedLessons.length}/3<br/>
-        Journal: {state.journalPagesFound.length}/12<br/>
-        Show Dialogue: {showDialogue ? 'Yes' : 'No'}
-      </div>
+
+      {/* Lesson System */}
+      {activeLessonId && (
+        <LessonController
+          lessonId={activeLessonId}
+          onComplete={handleLessonComplete}
+          onExit={handleLessonExit}
+        />
+      )}
+
     </div>
   )
 }

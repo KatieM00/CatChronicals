@@ -1,0 +1,332 @@
+/* Journal Page Reward Animation Styles */
+.rewardOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.rewardContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xl);
+  max-width: 500px;
+  width: 100%;
+  padding: var(--spacing-lg);
+}
+
+/* Reward Message */
+.rewardMessage {
+  text-align: center;
+  color: white;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all var(--animation-medium) var(--animation-ease);
+}
+
+.rewardMessage.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.rewardMessage h2 {
+  font-size: var(--font-size-xl);
+  margin: 0 0 var(--spacing-md);
+  font-weight: var(--font-weight-bold);
+}
+
+.rewardMessage p {
+  font-size: var(--font-size-md);
+  margin: 0;
+  opacity: 0.9;
+}
+
+/* Animated Page */
+.animatedPage {
+  position: relative;
+  opacity: 0;
+  transform: scale(0.8) rotateY(-20deg);
+  transition: all var(--animation-medium) var(--animation-ease);
+}
+
+.animatedPage.appearing {
+  opacity: 1;
+  transform: scale(1) rotateY(0deg);
+}
+
+.animatedPage.filling {
+  opacity: 1;
+  transform: scale(1) rotateY(0deg);
+}
+
+.animatedPage.complete {
+  opacity: 1;
+  transform: scale(1.05) rotateY(0deg);
+}
+
+.pageContainer {
+  width: 300px;
+  height: 400px;
+  background: linear-gradient(135deg, #f4f1e8, #ede7d3);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: var(--spacing-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.pageHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 2px solid var(--color-primary);
+}
+
+.pageNumber {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 50%;
+  box-shadow: var(--shadow-sm);
+}
+
+.pageTitle {
+  flex: 1;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+.pageContent {
+  height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Content Lines Animation */
+.contentLines {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+}
+
+.contentLine {
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));
+  border-radius: 2px;
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: lineAppear 0.6s ease-out forwards;
+}
+
+/* Symbols Animation */
+.symbolsSection {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-md);
+  margin: var(--spacing-lg) 0;
+}
+
+.animatedSymbol {
+  font-size: var(--font-size-xl);
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 50%;
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  transform: scale(0) rotate(180deg);
+  animation: symbolAppear 0.5s ease-out forwards;
+}
+
+/* Completion Stamp */
+.completionStamp {
+  align-self: flex-end;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-success);
+  background: var(--color-success-light);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+  border: 2px solid var(--color-success);
+  transform: rotate(15deg) scale(0);
+  animation: stampAppear 0.5s ease-out 2s forwards;
+}
+
+/* Page Glow */
+.pageGlow {
+  position: absolute;
+  inset: -8px;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.3), transparent);
+  border-radius: var(--border-radius-xl);
+  opacity: 0;
+  animation: glowPulse 2s ease-in-out 1s infinite;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes lineAppear {
+  0% {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes symbolAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(180deg);
+  }
+  50% {
+    transform: scale(1.2) rotate(90deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes stampAppear {
+  0% {
+    opacity: 0;
+    transform: rotate(15deg) scale(0);
+  }
+  50% {
+    transform: rotate(15deg) scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(15deg) scale(1);
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.05);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .rewardContainer {
+    padding: var(--spacing-md);
+  }
+  
+  .pageContainer {
+    width: 250px;
+    height: 320px;
+    padding: var(--spacing-md);
+  }
+  
+  .pageContent {
+    height: 220px;
+  }
+  
+  .rewardMessage h2 {
+    font-size: var(--font-size-lg);
+  }
+  
+  .rewardMessage p {
+    font-size: var(--font-size-sm);
+  }
+  
+  .animatedSymbol {
+    width: 40px;
+    height: 40px;
+    font-size: var(--font-size-lg);
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .rewardOverlay {
+    animation: none;
+  }
+  
+  .rewardMessage {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+  
+  .animatedPage {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+  
+  .contentLine {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  
+  .animatedSymbol {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  
+  .completionStamp {
+    animation: none;
+    opacity: 1;
+    transform: rotate(15deg);
+  }
+  
+  .pageGlow {
+    animation: none;
+    opacity: 0.3;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .pageContainer {
+    border: 3px solid var(--color-text);
+  }
+  
+  .animatedSymbol {
+    border: 2px solid var(--color-text);
+  }
+  
+  .completionStamp {
+    border-width: 3px;
+  }
+}

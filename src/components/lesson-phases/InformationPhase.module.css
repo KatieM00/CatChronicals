@@ -1,0 +1,280 @@
+.informationPhase {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-papyrus);
+  padding: var(--spacing-lg);
+  gap: var(--spacing-lg);
+}
+
+.phaseHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md);
+  background: var(--color-deep-blue);
+  color: var(--color-papyrus);
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--shadow-medium);
+}
+
+.phaseTitle {
+  font-family: var(--font-pixel);
+  font-size: var(--font-size-xl);
+  margin: 0;
+  flex: 1;
+}
+
+.phaseControls {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+.timeTracker {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-family: var(--font-pixel);
+  font-size: var(--font-size-small);
+}
+
+.timeLabel {
+  opacity: 0.8;
+}
+
+.timeValue {
+  font-weight: bold;
+  color: var(--color-highlight);
+}
+
+.skipButton {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: var(--color-papyrus);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: var(--font-size-small);
+  font-weight: bold;
+  transition: all var(--animation-fast) var(--animation-ease);
+}
+
+.skipButton:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.skipButton:focus {
+  outline: 3px solid var(--color-highlight);
+  outline-offset: 2px;
+}
+
+.contentArea {
+  flex: 1;
+  display: flex;
+  gap: var(--spacing-xl);
+  overflow: hidden;
+}
+
+.illustrationContainer {
+  flex: 0 0 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(44, 95, 122, 0.1);
+  border-radius: var(--border-radius-large);
+  padding: var(--spacing-lg);
+}
+
+.illustration {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-medium);
+}
+
+.informationContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.contentNavigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-md);
+  border-top: 2px solid var(--color-terracotta);
+}
+
+.contentProgress {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.contentCounter {
+  font-family: var(--font-pixel);
+  font-size: var(--font-size-small);
+  color: var(--color-deep-blue);
+  font-weight: bold;
+}
+
+.contentDots {
+  display: flex;
+  gap: var(--spacing-xs);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  transition: all var(--animation-fast) var(--animation-ease);
+}
+
+.dot.active {
+  background: var(--color-highlight);
+}
+
+.dot.inactive {
+  background: rgba(44, 95, 122, 0.3);
+}
+
+.nextButton,
+.practiceButton {
+  background: var(--color-terracotta);
+  border: 2px solid var(--color-deep-blue);
+  color: white;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: var(--font-size-medium);
+  font-weight: bold;
+  font-family: var(--font-pixel);
+  transition: all var(--animation-medium) var(--animation-ease);
+  min-width: var(--touch-target-min);
+}
+
+.practiceButton {
+  background: var(--color-success);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.nextButton:hover,
+.practiceButton:hover {
+  background: var(--color-highlight);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
+}
+
+.nextButton:focus,
+.practiceButton:focus {
+  outline: 3px solid var(--color-highlight);
+  outline-offset: 2px;
+}
+
+.progressIndicator {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: rgba(44, 95, 122, 0.1);
+  border-radius: var(--border-radius);
+}
+
+.progressBar {
+  flex: 1;
+  height: 8px;
+  background: rgba(44, 95, 122, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--color-terracotta) 0%,
+    var(--color-highlight) 100%
+  );
+  border-radius: 4px;
+  transition: width var(--animation-medium) var(--animation-ease);
+}
+
+.progressLabel {
+  font-family: var(--font-pixel);
+  font-size: var(--font-size-small);
+  color: var(--color-deep-blue);
+  font-weight: bold;
+  min-width: 120px;
+  text-align: right;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .informationPhase {
+    padding: var(--spacing-md);
+    gap: var(--spacing-md);
+  }
+  
+  .phaseHeader {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    text-align: center;
+  }
+  
+  .phaseTitle {
+    font-size: var(--font-size-large);
+  }
+  
+  .contentArea {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+  
+  .illustrationContainer {
+    flex: 0 0 200px;
+  }
+  
+  .contentNavigation {
+    flex-direction: column;
+    gap: var(--spacing-md);
+    text-align: center;
+  }
+  
+  .skipButton,
+  .nextButton,
+  .practiceButton {
+    font-size: var(--font-size-small);
+    padding: var(--spacing-sm);
+  }
+}
+
+/* Accessibility: Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .skipButton,
+  .nextButton,
+  .practiceButton,
+  .dot,
+  .progressFill {
+    transition: none;
+    animation: none;
+  }
+  
+  .practiceButton {
+    animation: none;
+  }
+}

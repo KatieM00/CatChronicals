@@ -1,0 +1,378 @@
+/* Journal Page Detail Styles */
+.pageDetail {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+}
+
+/* Page Navigation */
+.pageNavigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 2px solid rgba(139, 115, 85, 0.2);
+}
+
+.navButton {
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  transition: all var(--animation-fast) var(--animation-ease);
+}
+
+.navButton:hover:not(.disabled) {
+  background: var(--color-primary-dark);
+  transform: translateY(-1px);
+}
+
+.navButton.disabled {
+  background: var(--color-background-light);
+  color: var(--color-text-light);
+  cursor: not-allowed;
+}
+
+.pageNavigationControls {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.pagePosition {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Page Content */
+.pageContent {
+  flex: 1;
+  overflow-y: auto;
+  background: white;
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-md);
+  position: relative;
+}
+
+.pageContent.completed {
+  background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+  border: 2px solid var(--color-success);
+}
+
+/* Page Header */
+.pageHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+  padding-bottom: var(--spacing-lg);
+  border-bottom: 2px solid var(--color-primary);
+}
+
+.pageNumberLarge {
+  font-size: 3rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.pageTitleSection {
+  flex: 1;
+}
+
+.pageTitle {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+  margin: 0 0 var(--spacing-sm);
+  line-height: 1.2;
+}
+
+.pageTopicBadge {
+  display: inline-block;
+  padding: var(--spacing-xs) var(--spacing-md);
+  background: var(--color-primary);
+  color: white;
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  text-transform: capitalize;
+}
+
+.completionStatus {
+  flex-shrink: 0;
+}
+
+.completedBadge,
+.incompleteBadge {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.completedBadge {
+  background: var(--color-success-light);
+  color: var(--color-success-dark);
+  border: 1px solid var(--color-success);
+}
+
+.incompleteBadge {
+  background: var(--color-info-light);
+  color: var(--color-info-dark);
+  border: 1px solid var(--color-info);
+}
+
+/* Content Sections */
+.pageSummary,
+.keyPoints,
+.symbolsSection,
+.discoveryInfo,
+.actionSection {
+  margin-bottom: var(--spacing-xl);
+}
+
+.pageSummary h3,
+.keyPoints h3,
+.symbolsSection h3,
+.discoveryInfo h3 {
+  font-size: var(--font-size-lg);
+  color: var(--color-primary);
+  margin: 0 0 var(--spacing-md);
+  font-weight: var(--font-weight-bold);
+}
+
+.pageSummary p {
+  font-size: var(--font-size-md);
+  color: var(--color-text);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Key Points */
+.keyPointsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.keyPoint {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-sm);
+  background: var(--color-background-light);
+  border-radius: var(--border-radius-md);
+}
+
+.keyPointBullet {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-lg);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.keyPointText {
+  font-size: var(--font-size-md);
+  color: var(--color-text);
+  line-height: 1.5;
+}
+
+/* Symbols Section */
+.symbolsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.symbolCard {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.symbolDisplay {
+  font-size: var(--font-size-xl);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-background-light);
+  border-radius: var(--border-radius-md);
+  flex-shrink: 0;
+}
+
+.symbolInfo {
+  flex: 1;
+}
+
+.symbolMeaning {
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--spacing-xs);
+}
+
+.symbolCategory {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-light);
+  text-transform: capitalize;
+}
+
+/* Discovery Info */
+.discoveryDetails {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.discoveryItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-sm);
+  background: var(--color-background-light);
+  border-radius: var(--border-radius-md);
+}
+
+.discoveryLabel {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+  font-weight: var(--font-weight-medium);
+}
+
+.discoveryValue {
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Action Section */
+.actionSection {
+  text-align: center;
+  padding: var(--spacing-lg);
+  background: var(--color-info-light);
+  border: 1px solid var(--color-info);
+  border-radius: var(--border-radius-lg);
+}
+
+.actionHint p {
+  font-size: var(--font-size-md);
+  color: var(--color-info-dark);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Page Decoration */
+.pageDecoration {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: var(--border-radius-lg);
+}
+
+.decorativeBorder {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(139, 115, 85, 0.1);
+  border-radius: var(--border-radius-lg);
+}
+
+.completionGlow {
+  position: absolute;
+  inset: -4px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.1), transparent);
+  border-radius: var(--border-radius-lg);
+  animation: glow 3s ease-in-out infinite alternate;
+}
+
+/* Animations */
+@keyframes glow {
+  0% { opacity: 0.1; }
+  100% { opacity: 0.3; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .pageNavigation {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+  
+  .pageNavigationControls {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .pageContent {
+    padding: var(--spacing-lg);
+  }
+  
+  .pageHeader {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .pageNumberLarge {
+    font-size: 2rem;
+  }
+  
+  .symbolsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .discoveryItem {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    text-align: center;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .navButton:hover:not(.disabled) {
+    transform: none;
+  }
+  
+  .completionGlow {
+    animation: none;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .pageContent {
+    border: 2px solid var(--color-text);
+  }
+  
+  .pageContent.completed {
+    border-width: 3px;
+  }
+  
+  .symbolCard {
+    border-width: 2px;
+  }
+  
+  .actionSection {
+    border-width: 2px;
+  }
+}

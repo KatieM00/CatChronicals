@@ -16,6 +16,16 @@
   z-index: var(--z-background);
 }
 
+/* Dialogue mode overlay - dims background during introduction */
+.dialogueOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: var(--z-hotspots);
+  pointer-events: none;
+  transition: opacity var(--animation-medium) var(--animation-ease);
+}
+
 /* Ensure proper layering for interactive elements */
 .tombScene > button,
 .tombScene > [role="button"] {

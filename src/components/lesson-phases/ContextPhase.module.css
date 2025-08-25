@@ -1,0 +1,215 @@
+.contextPhase {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(
+    135deg,
+    var(--color-sand) 0%,
+    var(--color-papyrus) 50%,
+    var(--color-stone) 100%
+  );
+  overflow: hidden;
+}
+
+.contextBackground {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.3;
+  z-index: 1;
+}
+
+.journalPageDiscovery {
+  position: relative;
+  animation: pageFloat 3s ease-in-out infinite;
+}
+
+.tornPage {
+  width: 200px;
+  height: 250px;
+  background: linear-gradient(
+    135deg,
+    var(--color-papyrus) 0%,
+    #f0e6d2 100%
+  );
+  border-radius: 8px 8px 4px 8px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    inset 0 2px 4px rgba(255, 255, 255, 0.3);
+  transform: rotate(-5deg);
+  position: relative;
+  overflow: hidden;
+}
+
+.tornPage::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  height: 20px;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 3px,
+    rgba(139, 115, 85, 0.2) 3px,
+    rgba(139, 115, 85, 0.2) 6px
+  );
+}
+
+.pageContent {
+  padding: var(--spacing-lg);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.pageContent h3 {
+  font-family: var(--font-pixel);
+  font-size: var(--font-size-medium);
+  color: var(--color-deep-blue);
+  margin: 0;
+  text-align: center;
+}
+
+.pageLines {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+}
+
+.line {
+  height: 2px;
+  background: rgba(139, 115, 85, 0.3);
+  border-radius: 1px;
+}
+
+.line:nth-child(1) { width: 100%; }
+.line:nth-child(2) { width: 85%; }
+.line:nth-child(3) { width: 92%; }
+.line:nth-child(4) { width: 78%; }
+
+.catContainer {
+  position: absolute;
+  bottom: var(--spacing-xl);
+  left: var(--spacing-xl);
+  z-index: 10;
+}
+
+.phaseInfo {
+  position: absolute;
+  top: var(--spacing-lg);
+  left: var(--spacing-lg);
+  right: var(--spacing-lg);
+  z-index: 5;
+  background: rgba(247, 243, 227, 0.9);
+  border-radius: var(--border-radius-large);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-medium);
+  backdrop-filter: blur(10px);
+}
+
+.phaseTitle h2 {
+  font-family: var(--font-pixel);
+  font-size: var(--font-size-xl);
+  color: var(--color-deep-blue);
+  margin: 0 0 var(--spacing-sm) 0;
+  text-align: center;
+}
+
+.phaseTitle p {
+  font-size: var(--font-size-medium);
+  color: var(--color-stone);
+  margin: 0;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.progressIndicator {
+  margin-top: var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.progressBar {
+  flex: 1;
+  height: 8px;
+  background: rgba(44, 95, 122, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--color-highlight) 0%,
+    var(--color-gold) 100%
+  );
+  border-radius: 4px;
+  transition: width var(--animation-medium) var(--animation-ease);
+}
+
+.progressText {
+  font-family: var(--font-pixel);
+  font-size: var(--font-size-small);
+  color: var(--color-deep-blue);
+  font-weight: bold;
+  min-width: 60px;
+  text-align: center;
+}
+
+@keyframes pageFloat {
+  0%, 100% {
+    transform: rotate(-5deg) translateY(0);
+  }
+  50% {
+    transform: rotate(-3deg) translateY(-10px);
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .phaseInfo {
+    top: var(--spacing-sm);
+    left: var(--spacing-sm);
+    right: var(--spacing-sm);
+    padding: var(--spacing-md);
+  }
+  
+  .phaseTitle h2 {
+    font-size: var(--font-size-large);
+  }
+  
+  .phaseTitle p {
+    font-size: var(--font-size-small);
+  }
+  
+  .catContainer {
+    bottom: var(--spacing-lg);
+    left: var(--spacing-lg);
+  }
+  
+  .tornPage {
+    width: 150px;
+    height: 180px;
+  }
+}
+
+/* Accessibility: Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .journalPageDiscovery {
+    animation: none;
+  }
+  
+  .progressFill {
+    transition: none;
+  }
+}

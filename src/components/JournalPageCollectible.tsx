@@ -45,7 +45,7 @@ const JournalPageCollectible: React.FC<JournalPageCollectibleProps> = ({
       }}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
-      aria-label={`Collect journal page ${id}`}
+      aria-label={`Collect torn page from the architect's journal`}
       data-journal-id={id}
     >
       <div className={styles.pageCore}>

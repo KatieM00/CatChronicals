@@ -1,0 +1,190 @@
+/* Journal Button Styles */
+.journalButton {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #8b7355, #a08262);
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: var(--z-ui);
+  transition: all var(--animation-fast) var(--animation-ease);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.journalButton:hover {
+  transform: scale(1.05);
+  box-shadow: 
+    0 6px 16px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.journalButton:focus {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.journalButton:active {
+  transform: scale(0.95);
+}
+
+/* Position variants */
+.journalButton.top-left {
+  top: var(--spacing-lg);
+  left: var(--spacing-lg);
+}
+
+.journalButton.top-right {
+  top: var(--spacing-lg);
+  right: var(--spacing-lg);
+}
+
+.journalButton.bottom-left {
+  bottom: var(--spacing-lg);
+  left: var(--spacing-lg);
+}
+
+.journalButton.bottom-right {
+  bottom: var(--spacing-lg);
+  right: var(--spacing-lg);
+}
+
+/* Journal Icon */
+.journalIcon {
+  font-size: var(--font-size-xl);
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Progress Badge */
+.progressBadge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: var(--color-accent);
+  color: white;
+  border-radius: 12px;
+  padding: 2px 6px;
+  font-size: 10px;
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border: 2px solid white;
+}
+
+.badgeText {
+  display: block;
+  min-width: 16px;
+  text-align: center;
+}
+
+/* Notification Dot */
+.notificationDot {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 12px;
+  height: 12px;
+  background: var(--color-success);
+  border: 2px solid white;
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Animations */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .journalButton {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .journalIcon {
+    font-size: var(--font-size-lg);
+  }
+  
+  .journalButton.top-left,
+  .journalButton.top-right {
+    top: var(--spacing-md);
+  }
+  
+  .journalButton.top-left,
+  .journalButton.bottom-left {
+    left: var(--spacing-md);
+  }
+  
+  .journalButton.top-right,
+  .journalButton.bottom-right {
+    right: var(--spacing-md);
+  }
+  
+  .journalButton.bottom-left,
+  .journalButton.bottom-right {
+    bottom: var(--spacing-md);
+  }
+  
+  .progressBadge {
+    top: -6px;
+    right: -6px;
+    padding: 1px 4px;
+    font-size: 8px;
+  }
+  
+  .notificationDot {
+    width: 10px;
+    height: 10px;
+    top: 2px;
+    right: 2px;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .journalButton {
+    transition: none;
+  }
+  
+  .journalButton:hover {
+    transform: none;
+  }
+  
+  .journalButton:active {
+    transform: none;
+  }
+  
+  .notificationDot {
+    animation: none;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .journalButton {
+    border-width: 4px;
+    border-color: white;
+  }
+  
+  .progressBadge {
+    border-width: 3px;
+  }
+  
+  .notificationDot {
+    border-width: 3px;
+  }
+}

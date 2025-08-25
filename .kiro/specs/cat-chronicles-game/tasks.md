@@ -1,229 +1,208 @@
-# Implementation Plan
+# Tasks
 
-## ✅ Migration to React + Vite Complete!
-
-**What's been migrated:**
-- ✅ Converted from vanilla HTML/CSS/JS to React + TypeScript + Vite
-- ✅ Set up component-based architecture with CSS Modules
-- ✅ Created GameContainer, BackgroundLayer, ParallaxLayer, HotspotsOverlay components
-- ✅ Implemented proper asset management with Vite
-- ✅ Added hot reload development experience
-- ✅ Fixed all CSS conflicts and module loading issues
-
-**To run the new version:**
-```bash
-npm run dev  # Development server on localhost:3000
-npm run build  # Production build
-```
-
-- [x] 1. Set up React + Vite project structure and core architecture
-  - ✅ Create Vite + React + TypeScript project with proper configuration
-  - ✅ Set up component-based directory structure: src/components/, src/styles/, src/hooks/, public/assets/
-  - ✅ Configure CSS Modules for scoped component styling
-  - ✅ Set up TypeScript configuration for type safety
-  - ✅ Create responsive viewport and CSS Grid layout structure
-  - ✅ Set up CSS custom properties for theming and animation system
+- [x] **1. Set up React + Vite project structure and core architecture**
+  - Create Vite + React + TypeScript project with proper configuration
+  - Set up component-based directory structure: `src/components/`, `src/styles/`, `src/hooks/`, `public/assets/`
+  - Configure CSS Modules for scoped component styling
+  - Set up TypeScript configuration for type safety
+  - Create responsive viewport and CSS Grid layout structure
+  - Set up CSS custom properties for theming and animation system
   - _Requirements: 8.1, 8.4_
 
-- [x] 2. Build core UI framework with React components and layout system
-  - ✅ Create GameContainer component with CSS Grid for layout stability
-  - ✅ Implement BackgroundLayer component with dynamic background loading
-  - ✅ Build ParallaxLayer components for depth (disabled for performance)
-  - ✅ Create HotspotsOverlay component with interactive hotspots
-  - ✅ Implement z-index layering system (background < cat sprite < dialogue < UI)
-  - ✅ Set up CSS Modules for scoped component styling
+- [x] **2. Build core UI framework with React components and layout system**
+  - Create `GameContainer` with CSS Grid for layout stability
+  - Implement `BackgroundLayer` with dynamic background loading
+  - Build `ParallaxLayer` components for depth (disabled for performance)
+  - Create `HotspotsOverlay` with interactive hotspots
+  - Implement z-index layering (background < cat sprite < dialogue < UI)
   - _Requirements: 10.1, 10.7, 5.1_
 
-- [x] 3. Set up React-specific dependencies and tooling
-  - ✅ Install and configure React Router for navigation between game screens
-  - ✅ Add React DnD library for drag-and-drop functionality in lessons
-  - ✅ Set up React Context API for global state management (GameStateContext)
-  - ✅ Configure React DevTools for development debugging
-  - ✅ Add React Testing Library for component testing
-  - ✅ Set up ESLint and Prettier for code quality and formatting
-  - ✅ Configure React DevTools for development debugging
-  - ✅ Add React Testing Library for component testing
-  - ✅ Set up ESLint and Prettier for code quality and formatting
-  - ✅ Create custom hooks (useProgress, useAchievements) for state management
-  - ✅ Set up DnD provider with touch/desktop backend detection
-  - ✅ Add npm scripts for linting, formatting, and testing
+- [x] **3. Set up React-specific dependencies and tooling**
+  - Install/configure React Router, React DnD
+  - Set up Context API for global state (`GameStateContext`)
+  - Add React Testing Library, ESLint, Prettier
+  - Add npm scripts for lint, format, test, typecheck, bundle analysis
   - _Requirements: 8.1, 8.4_
 
-- [x] 4. Implement CatSprite React component with animation system
-  - ✅ Create CatSprite component with fixed position in bottom-left corner
-  - ✅ Implement sprite sheet animation system with proper frame cycling
-  - ✅ Add character switching system for Mango, Snickers, Dr. Fluff, and Pickles with CSS filters
-  - ✅ Create confused/dizzy animation state for story moments using different sprite sheets
-  - ✅ Ensure proper z-index positioning above background, below dialogue
-  - ✅ Use React hooks for animation state management
-  - ✅ Create CharacterPreview component for character selection screen
-  - ✅ Fix sprite sheet background positioning for proper frame display
+- [x] **4. Implement CatSprite component with animation system**
+  - Fixed position (bottom-left), sprite-sheet animation with frame cycling
+  - Character switching (Mango, Snickers, Dr. Fluff, Pickles)
+  - Confused/dizzy animation state for story moments
+  - Z-index above background, below dialogue
+  - `CharacterPreview` for selection screen
   - _Requirements: 1.1, 1.2, 5.8_
 
-- [x] 4. Build DialogueSystem React component with dual modes and animations
-
-
-  - Create DialogueBox component with semi-transparent rounded rectangle styling
-  - Implement two modes: narrow (story dialogue) and wide (lessons/activities) using React state
-  - Add smooth transitions between dialogue modes with CSS transitions
-  - Create TypewriterText component for story dialogue animation effect
-  - Implement click/tap to advance dialogue functionality with React event handlers
-  - Use React Context for dialogue state management across components
+- [x] **5. Build DialogueSystem with dual modes and animations**
+  - `DialogueBox` styles; narrow (story) vs wide (lesson) modes
+  - Typewriter text effect (respects reduced motion)
+  - Click/tap to advance; managed via Context
   - _Requirements: 7.5, 10.3, 10.4, 5.4_
 
-- [x] 5. Create comprehensive game state management with React Context
-
-  - Implement GameStateContext with selectedCharacter, currentLocation, completedLessons, journalPagesFound, lessonProgress, unlockedAreas, achievements
-  - Create custom hooks (useGameState, useProgress, useAchievements) for state access
-  - Add save/load functionality using LocalStorage API with React useEffect
-  - Implement state validation and corruption recovery mechanisms
-  - Create progress tracking for lessons and journal collection
-  - Build achievement system for perfect builds and lesson completion
+- [x] **6. Create comprehensive game state management**
+  - `selectedCharacter`, `currentLocation`, `completedLessons`, `journalPagesFound`, `lessonProgress`, `unlockedAreas`, `achievements`
+  - Save/load via LocalStorage; validation & corruption recovery
+  - Progress tracking and achievements
   - _Requirements: 8.3, 11.6, 2.4_
 
-- [ ] 7. Create opening Ancient Egypt tomb scene
+- [x] **7. Implement Lesson Framework with phase management (journal-driven)**
 
-  - Load background from ./backgrounds/egypt_tomb.png
-  - Initialize selected cat sprite in bottom-left with confused/dizzy animation
-  - Display story dialogue: "Oh no! Where am I? This place looks ancient... and very Egyptian! I can see hieroglyphics on the walls and strange treasures everywhere. Maybe I should explore and learn about this place to find my way home!"
-  - Add 3 red circle lesson buttons positioned on: wall hieroglyphics, treasure pile, stone tablet
-  - Place 1 journal page collectible on floor with glowing placeholder animation
-  - Add gentle particle effects (dust motes) for atmosphere
-  - Implement click handlers for all interactive elements with accessibility support
-  - _Requirements: 7.1, 7.2, 10.5, 10.6_
+  - Base lesson controller implementing 5 phases: Context (30s), Information (2–3m), Practice (3–5m), Assessment (1–2m), Reward (30s)
+  - Smooth transitions; multiple attempts; gentle feedback
+  - Completion gates exploration; unlocks applied puzzle and next area
+  - **Define lesson/page content schema** (topics, assets, hints, assessment keys, applied-puzzle link)
+  - **Localization-ready strings** (centralized copy; grade-appropriate vocabulary)
+  - _Requirements: 2.1–2.6, 2.7–2.9, 9.1–9.5_
 
-- [x] 8. Implement interactive elements and hotspot system with React components
+- [x] **8. Create Journal Page collection & tracking system**
 
-  - Create LessonButton component for red circle buttons scattered on background
-  - Build JournalPageCollectible component as gold rectangles with shimmer effects
-  - Implement hover states with gentle bounce animations using CSS Modules
-  - Create click/touch handlers using React event handlers and callbacks
-  - Add keyboard navigation support for accessibility with React focus management
-  - Ensure 44px minimum touch targets for mobile devices
-  - Use React props for positioning and callback functions
-  - _Requirements: 10.5, 10.6, 3.2, 10.2_
 
-- [ ] 9. Build journal page collection and tracking system
-  - Create JournalPage data model with discovery tracking
-  - Implement journal page discovery animations with glowing and shimmer effects
-  - Create journal collection UI with progress tracking (12 total pages)
-  - Add journal page content rendering with weathered parchment styling
-  - Implement journal page reward animations for lesson completion
+
+  - `JournalPage` model; discovery tracking; shimmer/glow animations
+  - Journal UI with parchment styling; 12-page progress visualization
+  - Reward animation on lesson completion (page fills in)
   - _Requirements: 2.4, 2.7, 7.6_
 
-- [ ] 10. Build HieroglyphicsLesson React component system
-  - Create IntroductionPhase component with wide dialogue box and "Let's learn to read like ancient Egyptians!" title
-  - Implement HieroglyphicSymbol components for 5 basic symbols (bird=A, water=N, eye=I, etc.) using SVG
-  - Build SymbolMatchingGame component with drag-and-drop functionality using React DnD
-  - Create PracticeActivity component with Egyptian name/word presentation and multiple choice
-  - Add QuestionComponent with visual feedback (green checkmark/red X) and ProgressBar component
-  - Implement SuccessState component with congratulations, unlock notification, and journal reward animation
-  - Use React hooks for lesson progress state management and sound effect triggers
-  - _Requirements: 9.1, 9.4, 2.1, 2.6_
-
-- [ ] 11. Build Ancient Egyptian marketplace shopping lesson
-  - Create Setup: Transform wide dialogue box into marketplace interface
-  - Implement Lesson Component: "Ancient Egyptians used bartering - trading goods instead of money!"
-  - Show interactive conversion chart with examples (1 loaf = 2 fish, 1 jar oil = 3 loaves)
-  - Build Shopping Challenge: Shopping list "Get 2 fish, 1 jar of oil, 1 piece of jewelry"
-  - Create inventory management system with available goods to trade
-  - Implement drag-and-drop or click-based trading interface with mathematical validation
-  - Add visual merchant character reactions and progressive hints for struggling players
-  - Create success animation with shopping basket filling up
-  - _Requirements: 9.2, 9.4, 2.1, 2.6_
-
-- [ ] 12. Develop pyramid building construction lesson
-  - Create Theory Phase: "Ancient Egyptians built amazing pyramids! Let's learn how!"
-  - Show pyramid structure with interactive 3D-ish cross-section (base blocks, middle layers, capstone)
-  - Implement Building Challenge: Drag-and-drop block placement game with 3 block sizes
-  - Create grid-based placement system with physics-like rules (no mid-air blocks)
-  - Add Engineering Validation: check structural stability and pyramid proportions
-  - Implement visual feedback for incorrect placements and celebration animation for completion
-  - Include timer element, undo/reset functionality, and achievement system for perfect builds
-  - Add authentic Egyptian styling with hieroglyphic decorations on blocks
-  - _Requirements: 9.3, 9.4, 2.1, 2.6_
-
-- [ ] 13. Create lesson framework with phase management system
-  - Implement base Lesson class with 5-phase structure (Context 30s, Information 2-3min, Practice 3-5min, Assessment 1-2min, Reward 30s)
-  - Create phase progression system with smooth transitions between lesson phases
-  - Add LessonProgress tracking for attempts, hints used, and completion status
-  - Implement lesson completion validation and area unlock mechanics
-  - Create return to exploration mode functionality after lesson completion
-  - _Requirements: 2.1, 2.3, 2.9_
-
-- [ ] 14. Build assessment engine and adaptive feedback system
-  - Implement multiple choice question handler with validation logic
-  - Create interactive demonstration assessment system
-  - Add adaptive hint system that triggers after multiple failed attempts
-  - Implement positive feedback messaging for mistakes as "interesting attempts"
-  - Create visual feedback system with green checkmarks and gentle red glow for errors
-  - Add sound effect triggers for correct/incorrect answers
+- [ ] **9. Build Assessment engine & adaptive feedback**
+  - Multiple-choice and interactive demo assessments
+  - Adaptive hints after repeated attempts
+  - Positive messaging for “interesting attempts”
+  - Visual/audio feedback (green check; gentle red glow)
   - _Requirements: 2.4, 2.9, 9.6, 5.5_
 
-- [ ] 15. Add comprehensive accessibility features
-  - Implement full keyboard navigation for all interactive elements
-  - Add ARIA labels and screen reader support for all UI components
-  - Create high contrast mode with alternative color schemes
-  - Implement text scaling support up to 200% without layout breaking
-  - Add reduced motion support respecting user preferences
-  - Ensure 44px minimum touch targets and clear focus indicators
+- [x] **10. Add comprehensive accessibility features**
+  - Full keyboard navigation across all interactives
+  - ARIA labels/roles; screen reader support
+  - High-contrast mode; text scaling to 200% without layout break
+  - Respects `prefers-reduced-motion`
+  - 44px minimum touch targets; visible focus indicators
   - _Requirements: 3.2, 3.3, 3.4, 3.5, 8.5_
 
-- [ ] 16. Create audio system with ambient sounds and feedback
-  - Implement Web Audio API integration for sound management
-  - Add ambient sound trigger placeholders for tomb atmosphere
-  - Create sound effects for interactions, successes, and transitions
-  - Add satisfying building sound effects for pyramid lesson
-  - Implement volume controls and mute functionality
-  - Create audio alternatives for visual information
+- [ ] **11. Add Text-to-Speech / voice-over toggle**
+  - Web Speech API where available; graceful fallbacks
+  - Audio alternatives for lesson text/instructions
+  - Honors mute/reduced-motion preferences
+  - _Requirements: 3.6_
+
+- [x] **12. Add focus map & keyboard/gamepad support**
+  - Formal focus order for dialogue, hotspots, lessons
+  - Enter/Space parity with click/tap actions
+  - Optional gamepad mapping for exploration/lessons
+  - _Requirements: 3.2, 10.2_
+
+- [x] **13. Create opening Ancient Egypt tomb scene (journal-gated)**
+  - Load `egypt_tomb.png`; cat sprite starts dizzy/confused
+  - Pickup of first torn journal page triggers Lesson Framework
+  - After lesson completion, spawn applied puzzle (decode wall text) to unlock next area
+  - 3 lesson hotspots: wall hieroglyphics, treasure pile, stone tablet
+  - One visible journal page collectible with glow; dust mote particles
+  - Accessible click/keyboard handlers
+  - _Requirements: 7.1, 7.2, 10.5, 10.6_
+
+- [x] **14. Implement interactive elements & hotspot system**
+  - `LessonButton` (red circle), `JournalPageCollectible` (gold shimmer)
+  - Hover/press states; bounce animation
+  - Keyboard navigation/focus management
+  - _Requirements: 10.5, 10.6, 3.2, 10.2_
+
+- [ ] **15. Build Hieroglyphics lesson**
+  - Intro: “Let’s learn to read like ancient Egyptians!”
+  - `HieroglyphicSymbol` components (≥5 basic symbols via SVG)
+  - `SymbolMatchingGame` (React DnD) + practice with simple words
+  - Assessment (3–5 items) with visual feedback + progress bar
+  - Success state: congrats + journal page reward
+  - Unlock **HieroglyphGate** applied puzzle to open passage
+  - _Requirements: 9.1, 9.4, 2.1, 2.6_
+
+- [ ] **16. Build Marketplace trading lesson**
+  - Lesson: bartering basics (no money; goods-for-goods)
+  - Conversion chart examples; inventory & trading interface
+  - Shopping challenge with validation & progressive hints
+  - Success animation; unlock **BarterCheckpoint** applied puzzle
+  - _Requirements: 9.2, 9.4, 2.1, 2.6_
+
+- [ ] **17. Build Pyramid construction lesson**
+  - Theory: foundations, layers, capstone (kid-friendly)
+  - Drag/drop block placement; grid with stability rules
+  - Validate proportions/stability; undo/reset; achievements
+  - Success animation; unlock **StabilityTest** applied puzzle
+  - _Requirements: 9.3, 9.4, 2.1, 2.6_
+
+- [ ] **18. Build Applied Exploration Puzzle system**
+  - Reusable knowledge-lock components: `HieroglyphGate`, `BarterCheckpoint`, `StabilityTest`
+  - Config via JSON links puzzle to completed lesson outcome
+  - Hooks into `unlockedAreas` and narrative controller
+  - Used after each lesson to apply knowledge before area unlock
+  - _Requirements: 2.6, 7.5, 9.5, 6.1_
+
+- [ ] **19. Create audio system (ambient + feedback)**
+  - Ambient loops per area (tomb/market/pyramid)
+  - SFX for interactions, success, transitions; volume/mute controls
+  - Audio alternatives for visual info
   - _Requirements: 3.6, 5.4_
 
-- [ ] 17. Implement drag-and-drop functionality for lessons
-  - Create reusable drag-and-drop system for symbol matching in hieroglyphics lesson
-  - Implement inventory drag-and-drop for marketplace trading interface
-  - Add block placement drag-and-drop for pyramid building with collision detection
-  - Ensure touch-friendly interactions for tablets with proper touch target sizes
-  - Add visual feedback during drag operations (hover states, drop zones)
+- [ ] **20. Implement reusable drag-and-drop**
+  - Common DnD utilities for symbols, trading, and blocks
+  - Touch-friendly; hover/drop-zone visual states
   - _Requirements: 10.2, 9.1, 9.2, 9.3_
 
-- [ ] 18. Add visual effects and particle systems
-  - Create gentle particle effects (dust motes) for tomb atmosphere
-  - Implement sparkle effects for success animations and journal page discoveries
-  - Add celebration animations for lesson completion with scaling and rotation
-  - Create shimmer effects for collectible journal pages
-  - Implement smooth hover animations with gentle bounce effects
-  - Ensure all animations respect reduced motion preferences
+- [x] **21. Add visual effects & particles**
+  - Dust motes; sparkles on success/journal discovery
+  - Celebration animations; shimmer for collectibles
+  - Smooth hover bounces; respects reduced motion
   - _Requirements: 5.5, 5.8, 8.5_
 
-- [ ] 19. Implement performance optimizations and asset management
-  - Set up lazy loading system for lesson content to stay under 10MB initial load
-  - Optimize sprite sheets and implement efficient 60fps animation system
-  - Add image compression and format optimization for web delivery
-  - Implement graceful degradation for slower devices
-  - Create asset preloading system for smooth transitions
+- [ ] **22. Implement performance optimizations & asset management**
+  - Lazy-load lessons (initial load < 10MB)
+  - Optimize sprite sheets; target 60fps; image compression/modern formats
+  - Graceful degradation on low-end devices
+  - Preloading for smooth transitions
   - _Requirements: 11.1, 11.2, 11.6, 5.8_
 
-- [ ] 20. Add story progression and narrative integration
-  - Implement character personality-based dialogue generation (enthusiastic, thoughtful, scientific, artistic)
-  - Create narrative controller linking lesson completion to story advancement
-  - Add story context setting for each lesson (30-second introductions)
-  - Implement final story resolution when all journal pages are collected
-  - Create smooth transitions between story dialogue and lesson modes
+- [ ] **23. Add asset budget CI**
+  - CI check fails if initial bundle + critical assets > 10MB
+  - Include sprites/textures in budget
+  - _Requirements: 11.1_
+
+- [ ] **24. Create sprite atlas pipeline**
+  - Texture packing: single atlas per scene
+  - Validate 60fps on low-end hardware
+  - _Requirements: 11.6, 5.8_
+
+- [ ] **25. Add story progression & narrative integration**
+  - Personality-based dialogue variants by character
+  - Narrative controller: `pageFound → lessonComplete → puzzleSolved → areaUnlocked`
+  - 30s context-setting injected before each lesson
+  - Final resolution when all journal pages collected
+  - Seamless transitions between story and lessons
   - _Requirements: 7.1, 7.2, 7.3, 7.4, 7.5, 7.7_
 
-- [ ] 21. Implement comprehensive error handling and offline functionality
-  - Add asset loading error recovery with fallback resources
-  - Create offline functionality for core game after initial load
-  - Implement user-friendly error messages for technical issues
-  - Add save game corruption recovery mechanisms
-  - Create graceful degradation for unsupported browser features
+- [ ] **26. Implement local-only analytics & privacy**
+  - Track lesson completion, attempts, time-on-task (localStorage only)
+  - Export JSON in teacher mode (manual action)
+  - No PII; COPPA-safe teacher notice
+  - _Requirements: 11.7, 4.2_
+
+- [ ] **27. Implement comprehensive error handling & offline**
+  - Asset load recovery with fallbacks
+  - Offline-first core loop after initial load (service worker)
+  - User-friendly error messages
+  - Save corruption recovery
+  - Progressive enhancement for unsupported features
   - _Requirements: 11.5, 11.6_
 
-- [ ] 22. Final integration testing and cross-browser compatibility
-  - Test complete game flow from character selection through all three lessons
-  - Verify journal page collection and story completion sequence
-  - Conduct accessibility testing with screen readers and keyboard-only navigation
-  - Test responsive layouts across mobile, tablet, and desktop breakpoints
-  - Verify cross-browser compatibility with modern browsers (Chrome, Firefox, Safari, Edge)
-  - Perform performance testing to ensure 60fps animations and smooth interactions
+- [ ] **28. Final integration testing & cross-browser compatibility**
+  - Full flow test: character select → all lessons → story completion
+  - Verify journal collection & applied puzzles between areas
+  - Accessibility audit (SR/keyboard/contrast)
+  - Responsive checks: mobile/tablet/desktop
+  - Cross-browser: Chrome, Firefox, Safari, Edge (last 2)
+  - Performance: sustained 60fps; initial load budget passes CI
   - _Requirements: 2.1, 2.7, 3.2, 5.8, 10.7, 11.4_
+
+## Definition of Done (per lesson)
+- All 5 phases implemented with durations and clear UI
+- Multiple attempts, gentle feedback; adaptive hints
+- Assessment (3–5 items) gates progression
+- Reward animation; journal page fills in
+- Applied exploration puzzle unlocked and solved to progress
+- Accessibility pass; perf/offline checks satisfied

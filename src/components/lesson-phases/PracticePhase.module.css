@@ -1,0 +1,335 @@
+.practicePhase {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-papyrus);
+  padding: var(--spacing-lg);
+  gap: var(--spacing-lg);
+}
+
+.phaseHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md);
+  background: var(--color-terracotta);
+  color: white;
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--shadow-medium);
+}
+
+.phaseTitle {
+  font-family: var(--font-pixel);
+  font-size: var(--font-size-xl);
+  margin: 0;
+  flex: 1;
+}
+
+.phaseInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--spacing-xs);
+  font-family: var(--font-pixel);
+  font-size: var(--font-size-small);
+}
+
+.activityCounter {
+  font-weight: bold;
+}
+
+.attemptCounter {
+  opacity: 0.8;
+  font-size: var(--font-size-xs);
+}
+
+.practiceContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  overflow: auto;
+}
+
+.placeholderActivity {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(196, 112, 79, 0.1);
+  border: 2px dashed var(--color-terracotta);
+  border-radius: var(--border-radius-large);
+  padding: var(--spacing-xxl);
+  text-align: center;
+  gap: var(--spacing-lg);
+}
+
+.placeholderActivity h3 {
+  font-family: var(--font-pixel);
+  font-size: var(--font-size-large);
+  color: var(--color-deep-blue);
+  margin: 0;
+}
+
+.placeholderActivity p {
+  font-size: var(--font-size-large);
+  color: var(--color-stone);
+  margin: 0;
+}
+
+.completeButton {
+  background: var(--color-success);
+  border: 2px solid var(--color-deep-blue);
+  color: white;
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: var(--font-size-medium);
+  font-weight: bold;
+  font-family: var(--font-pixel);
+  transition: all var(--animation-medium) var(--animation-ease);
+  min-width: var(--touch-target-min);
+}
+
+.completeButton:hover {
+  background: var(--color-highlight);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
+}
+
+.hintSection {
+  margin-top: auto;
+  padding: var(--spacing-md);
+  background: rgba(218, 165, 32, 0.1);
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(218, 165, 32, 0.3);
+}
+
+.hintButton {
+  background: var(--color-highlight);
+  border: 2px solid var(--color-deep-blue);
+  color: var(--color-deep-blue);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: var(--font-size-small);
+  font-weight: bold;
+  transition: all var(--animation-fast) var(--animation-ease);
+  width: 100%;
+}
+
+.hintButton:hover:not(:disabled) {
+  background: var(--color-gold);
+  transform: translateY(-1px);
+}
+
+.hintButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.hintBox {
+  background: rgba(255, 215, 0, 0.2);
+  border: 2px solid var(--color-highlight);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md);
+}
+
+.hintBox h4 {
+  font-family: var(--font-pixel);
+  font-size: var(--font-size-medium);
+  color: var(--color-deep-blue);
+  margin: 0 0 var(--spacing-sm) 0;
+}
+
+.hintBox p {
+  font-size: var(--font-size-medium);
+  color: var(--color-stone);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.activityComplete {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xl);
+  text-align: center;
+}
+
+.successMessage {
+  background: rgba(76, 175, 80, 0.1);
+  border: 2px solid var(--color-success);
+  border-radius: var(--border-radius-large);
+  padding: var(--spacing-xl);
+}
+
+.successMessage h3 {
+  font-family: var(--font-pixel);
+  font-size: var(--font-size-xl);
+  color: var(--color-success);
+  margin: 0 0 var(--spacing-md) 0;
+}
+
+.successMessage p {
+  font-size: var(--font-size-medium);
+  color: var(--color-deep-blue);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.activityActions {
+  display: flex;
+  gap: var(--spacing-lg);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.nextActivityButton,
+.assessmentButton {
+  background: var(--color-success);
+  border: 2px solid var(--color-deep-blue);
+  color: white;
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: var(--font-size-medium);
+  font-weight: bold;
+  font-family: var(--font-pixel);
+  transition: all var(--animation-medium) var(--animation-ease);
+  min-width: var(--touch-target-min);
+}
+
+.assessmentButton {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.tryAgainButton {
+  background: rgba(196, 112, 79, 0.2);
+  border: 2px solid var(--color-terracotta);
+  color: var(--color-terracotta);
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: var(--font-size-medium);
+  font-weight: bold;
+  font-family: var(--font-pixel);
+  transition: all var(--animation-medium) var(--animation-ease);
+  min-width: var(--touch-target-min);
+}
+
+.nextActivityButton:hover,
+.assessmentButton:hover,
+.tryAgainButton:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
+}
+
+.nextActivityButton:hover,
+.assessmentButton:hover {
+  background: var(--color-highlight);
+}
+
+.tryAgainButton:hover {
+  background: var(--color-terracotta);
+  color: white;
+}
+
+.progressIndicator {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: rgba(196, 112, 79, 0.1);
+  border-radius: var(--border-radius);
+}
+
+.progressBar {
+  flex: 1;
+  height: 8px;
+  background: rgba(196, 112, 79, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--color-terracotta) 0%,
+    var(--color-success) 100%
+  );
+  border-radius: 4px;
+  transition: width var(--animation-medium) var(--animation-ease);
+}
+
+.progressLabel {
+  font-family: var(--font-pixel);
+  font-size: var(--font-size-small);
+  color: var(--color-deep-blue);
+  font-weight: bold;
+  min-width: 120px;
+  text-align: right;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .practicePhase {
+    padding: var(--spacing-md);
+    gap: var(--spacing-md);
+  }
+  
+  .phaseHeader {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    text-align: center;
+  }
+  
+  .phaseTitle {
+    font-size: var(--font-size-large);
+  }
+  
+  .placeholderActivity {
+    padding: var(--spacing-lg);
+  }
+  
+  .activityActions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .nextActivityButton,
+  .assessmentButton,
+  .tryAgainButton {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+/* Accessibility: Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .completeButton,
+  .nextActivityButton,
+  .assessmentButton,
+  .tryAgainButton,
+  .progressFill {
+    transition: none;
+    animation: none;
+  }
+  
+  .assessmentButton {
+    animation: none;
+  }
+}
