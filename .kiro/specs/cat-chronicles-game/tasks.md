@@ -55,14 +55,16 @@
 
 - [x] **8. Create Journal Page collection & tracking system**
 
-
-
   - `JournalPage` model; discovery tracking; shimmer/glow animations
   - Journal UI with parchment styling; 12-page progress visualization
   - Reward animation on lesson completion (page fills in)
   - _Requirements: 2.4, 2.7, 7.6_
 
-- [ ] **9. Build Assessment engine & adaptive feedback**
+- [x] **9. Build Assessment engine & adaptive feedback**
+
+
+
+
   - Multiple-choice and interactive demo assessments
   - Adaptive hints after repeated attempts
   - Positive messaging for “interesting attempts”
@@ -89,13 +91,17 @@
   - Optional gamepad mapping for exploration/lessons
   - _Requirements: 3.2, 10.2_
 
-- [x] **13. Create opening Ancient Egypt tomb scene (journal-gated)**
-  - Load `egypt_tomb.png`; cat sprite starts dizzy/confused
-  - Pickup of first torn journal page triggers Lesson Framework
-  - After lesson completion, spawn applied puzzle (decode wall text) to unlock next area
-  - 3 lesson hotspots: wall hieroglyphics, treasure pile, stone tablet
-  - One visible journal page collectible with glow; dust mote particles
-  - Accessible click/keyboard handlers
+- [-] **13. Create opening Ancient Egypt tomb scene with narrative flow**
+
+
+
+  - Create `TombPage` component that loads `egypt_tomb.png` background
+  - Cat sprite starts dizzy/confused with opening dialogue: "Oh no! Where are we? It looks like we've landed in a tomb!"
+  - Implement exploration prompt: "Look around and see what you can find!"
+  - Create interactive hotspots: journal pages (primary), wall hieroglyphics, treasure pile, stone tablet
+  - Journal page collectible with shimmer/glow animation and discovery dialogue
+  - Cat discovery reaction: "What's this? Looks like we've found some journal pages from an archaeologist's journal!"
+  - Accessible click/keyboard handlers for all interactive elements
   - _Requirements: 7.1, 7.2, 10.5, 10.6_
 
 - [x] **14. Implement interactive elements & hotspot system**
@@ -104,7 +110,10 @@
   - Keyboard navigation/focus management
   - _Requirements: 10.5, 10.6, 3.2, 10.2_
 
-- [ ] **15. Build Hieroglyphics lesson**
+- [x] **15. Build Hieroglyphics lesson**
+
+
+
   - Intro: “Let’s learn to read like ancient Egyptians!”
   - `HieroglyphicSymbol` components (≥5 basic symbols via SVG)
   - `SymbolMatchingGame` (React DnD) + practice with simple words
@@ -112,6 +121,24 @@
   - Success state: congrats + journal page reward
   - Unlock **HieroglyphGate** applied puzzle to open passage
   - _Requirements: 9.1, 9.4, 2.1, 2.6_
+  - **Status: Components complete, needs tomb page integration (see Task 15.1)**
+
+- [ ] **15.1 Integrate archaeologist's journal lesson system into tomb page**
+  - Modify `HieroglyphicsJournalPage` to present as archaeologist's findings
+  - Update journal content to narrative format: "Day 12 - It looks like these symbols are actually a language..."
+  - Integrate lesson trigger from journal page discovery on tomb page
+  - Ensure seamless flow: tomb exploration → journal discovery → archaeologist lesson → escape activity
+  - After lesson completion, unlock tomb escape puzzle using learned hieroglyphics knowledge
+  - Maintain immersive storytelling throughout lesson experience
+  - _Requirements: 7.1, 7.2, 9.1, 2.1, 2.6_
+
+- [ ] **15.2 Create tomb escape activity using hieroglyphics knowledge**
+  - Implement tomb escape puzzle that requires applying learned hieroglyphics
+  - Use existing `HieroglyphicsTask` component for wall decoding activity
+  - Create escape sequence: decode wall symbols → unlock passage → progress to next area
+  - Integrate with tomb page as post-lesson activity
+  - Success unlocks next location in the adventure
+  - _Requirements: 2.6, 9.1, 7.5_
 
 - [ ] **16. Build Marketplace trading lesson**
   - Lesson: bartering basics (no money; goods-for-goods)

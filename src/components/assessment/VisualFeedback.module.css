@@ -1,0 +1,338 @@
+/* Visual Feedback Styles */
+.feedbackContainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg) var(--spacing-xl);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(8px);
+  max-width: 400px;
+  text-align: center;
+  transition: all var(--animation-medium) var(--animation-ease);
+  position: relative;
+  overflow: hidden;
+}
+
+.feedbackContainer.visible {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  animation: feedbackAppear 0.4s ease-out;
+}
+
+.feedbackContainer.hidden {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.8);
+}
+
+/* Feedback Type Variants */
+.feedbackContainer.success {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.95), rgba(5, 150, 105, 0.95));
+  color: white;
+  border: 2px solid var(--color-success);
+}
+
+.feedbackContainer.error {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.9), rgba(220, 38, 38, 0.9));
+  color: white;
+  border: 2px solid var(--color-error);
+}
+
+.feedbackContainer.almost {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.95), rgba(217, 119, 6, 0.95));
+  color: white;
+  border: 2px solid var(--color-warning);
+}
+
+.feedbackContainer.encouraging {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.95), rgba(37, 99, 235, 0.95));
+  color: white;
+  border: 2px solid var(--color-info);
+}
+
+.feedbackContainer.hint {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.95), rgba(124, 58, 237, 0.95));
+  color: white;
+  border: 2px solid var(--color-secondary);
+}
+
+/* Feedback Icon */
+.feedbackIcon {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+  animation: iconPulse 0.6s ease-out;
+}
+
+.success .feedbackIcon {
+  animation: successBounce 0.6s ease-out;
+}
+
+.error .feedbackIcon {
+  animation: errorShake 0.6s ease-out;
+}
+
+.almost .feedbackIcon {
+  animation: almostWiggle 0.8s ease-out;
+}
+
+.encouraging .feedbackIcon,
+.hint .feedbackIcon {
+  animation: encouragingGlow 1s ease-out;
+}
+
+/* Feedback Message */
+.feedbackMessage {
+  flex: 1;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.4;
+}
+
+/* Visual Effects */
+.feedbackGlow {
+  position: absolute;
+  inset: -4px;
+  border-radius: var(--border-radius-xl);
+  opacity: 0.6;
+  animation: glowPulse 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.success .feedbackGlow {
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.4), transparent);
+}
+
+.error .feedbackGlow {
+  background: radial-gradient(circle, rgba(239, 68, 68, 0.4), transparent);
+}
+
+.almost .feedbackGlow {
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.4), transparent);
+}
+
+.encouraging .feedbackGlow,
+.hint .feedbackGlow {
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.4), transparent);
+}
+
+/* Success Particles */
+.successParticles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.successParticles::before,
+.successParticles::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  animation: particleFloat 1.5s ease-out infinite;
+}
+
+.successParticles::before {
+  top: 20%;
+  left: 20%;
+  animation-delay: 0.2s;
+}
+
+.successParticles::after {
+  top: 30%;
+  right: 20%;
+  animation-delay: 0.6s;
+}
+
+/* Animations */
+@keyframes feedbackAppear {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5) rotateY(-20deg);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.05) rotateY(0deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) rotateY(0deg);
+  }
+}
+
+@keyframes iconPulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes successBounce {
+  0% {
+    transform: scale(0.3) rotate(-180deg);
+  }
+  50% {
+    transform: scale(1.2) rotate(0deg);
+  }
+  70% {
+    transform: scale(0.9) rotate(0deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes errorShake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-4px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(4px);
+  }
+}
+
+@keyframes almostWiggle {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-5deg);
+  }
+  75% {
+    transform: rotate(5deg);
+  }
+}
+
+@keyframes encouragingGlow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.1);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes particleFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-20px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-40px) scale(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .feedbackContainer {
+    max-width: 300px;
+    padding: var(--spacing-md) var(--spacing-lg);
+    gap: var(--spacing-sm);
+  }
+  
+  .feedbackIcon {
+    width: 40px;
+    height: 40px;
+    font-size: var(--font-size-lg);
+  }
+  
+  .feedbackMessage {
+    font-size: var(--font-size-sm);
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .feedbackContainer {
+    animation: none;
+    transition: opacity var(--animation-fast) ease;
+  }
+  
+  .feedbackIcon {
+    animation: none;
+  }
+  
+  .feedbackGlow {
+    animation: none;
+    opacity: 0.4;
+  }
+  
+  .successParticles::before,
+  .successParticles::after {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .feedbackContainer {
+    border-width: 3px;
+    backdrop-filter: none;
+  }
+  
+  .feedbackContainer.success {
+    background: var(--color-success);
+  }
+  
+  .feedbackContainer.error {
+    background: var(--color-error);
+  }
+  
+  .feedbackContainer.almost {
+    background: var(--color-warning);
+  }
+  
+  .feedbackContainer.encouraging,
+  .feedbackContainer.hint {
+    background: var(--color-info);
+  }
+  
+  .feedbackIcon {
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--color-text);
+  }
+}

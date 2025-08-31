@@ -1,0 +1,358 @@
+/* Hieroglyphics Journal Page Styles - PROPER Game Design */
+
+/* Outer wrapper - MATCHES character selection exactly */
+.journalOverlay {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0b0b0b;
+  padding: var(--frame-gutter);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--z-modal);
+}
+
+/* Screen within a screen (16:9, responsive) - EXACTLY like character selection */
+.journalBook {
+  width: min(
+    calc(100vw - (var(--frame-gutter) * 2)),
+    calc((100dvh - (var(--frame-gutter) * 2)) * 16 / 9)
+  );
+  aspect-ratio: 16 / 9;
+  background: url('/Backgrounds/egypt_tomb.png') center / cover no-repeat;
+
+  /* scale frame chrome with size - EXACTLY like character selection */
+  border: max(2px, 0.35cqw) solid #333;
+  border-radius: max(8px, 1cqw);
+  box-shadow: 0 max(8px, 1.6cqw) max(40px, 4cqw) rgba(0,0,0,0.6);
+
+  overflow: hidden;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: clamp(10px, 1.4cqw, 20px);
+
+  /* enable cqw/cqh inside */
+  container-type: inline-size;
+}
+
+.journalBinding {
+  width: 40px;
+  background: var(--color-terracotta);
+  border-right: var(--border-width) solid var(--color-stone);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-lg);
+}
+
+.bindingRings {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.ring {
+  width: 16px;
+  height: 16px;
+  border: 3px solid var(--color-highlight);
+  border-radius: 50%;
+  background: var(--color-deep-blue);
+  box-shadow: inset 0 2px 4px var(--color-shadow);
+}
+
+.journalPage {
+  flex: 1;
+  padding: var(--spacing-lg);
+  background: var(--color-papyrus);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.pageHeader {
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+  border-bottom: var(--border-width) solid var(--color-highlight);
+  padding-bottom: var(--spacing-md);
+}
+
+.pageNumber {
+  font-family: var(--font-pixel);
+  font-size: var(--font-size-medium);
+  color: var(--color-terracotta);
+  font-weight: bold;
+  margin-bottom: var(--spacing-xs);
+}
+
+.pageTitle {
+  font-family: var(--font-pixel);
+  font-size: var(--font-size-xl);
+  color: var(--color-deep-blue);
+  font-weight: bold;
+  margin: 0 0 var(--spacing-sm) 0;
+  text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.5);
+}
+
+.pageDecoration {
+  font-size: var(--font-size-medium);
+  color: var(--color-highlight);
+  letter-spacing: 8px;
+}
+
+.pageContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 3vw, 24px);
+}
+
+.textContent {
+  flex: 1;
+}
+
+.paragraph {
+  margin-bottom: clamp(12px, 2vw, 16px);
+}
+
+.paragraph p {
+  font-family: var(--font-pixel);
+  font-size: var(--font-size-medium);
+  line-height: 1.6;
+  color: var(--color-deep-blue);
+  margin: 0;
+  text-align: justify;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.symbolsSection {
+  background: rgba(212, 175, 55, 0.1);
+  border: 2px solid #d4af37;
+  border-radius: 4px;
+  padding: clamp(12px, 2vw, 16px);
+  margin-top: clamp(8px, 1.5vw, 16px);
+}
+
+.symbolsSection h3 {
+  font-family: 'Courier New', monospace;
+  font-size: clamp(14px, 2.5vw, 18px);
+  color: #8b4513;
+  font-weight: bold;
+  margin: 0 0 clamp(8px, 1.5vw, 12px) 0;
+  text-align: center;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.symbolsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: clamp(8px, 1.5vw, 12px);
+}
+
+.symbolEntry {
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 1.5vw, 12px);
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  padding: clamp(6px, 1vw, 8px);
+}
+
+.symbolNote {
+  font-family: 'Courier New', monospace;
+  font-size: clamp(10px, 1.8vw, 12px);
+  color: #2c2c2c;
+  line-height: 1.4;
+}
+
+.symbolNote strong {
+  color: #8b4513;
+}
+
+.symbolNote em {
+  color: #666666;
+  font-style: italic;
+}
+
+.pageControls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: clamp(16px, 3vw, 24px);
+  padding-top: clamp(8px, 1.5vw, 16px);
+  border-top: 1px solid #cccccc;
+}
+
+.closeButton,
+.nextButton {
+  font-family: 'Courier New', monospace;
+  font-size: clamp(12px, 2vw, 16px);
+  font-weight: bold;
+  padding: clamp(6px, 1vw, 8px) clamp(12px, 2vw, 16px);
+  border: 2px solid #8b4513;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 2px 2px 0 #654321;
+}
+
+.closeButton {
+  background: #cccccc;
+  color: #2c2c2c;
+}
+
+.closeButton:hover {
+  background: #bbbbbb;
+  transform: translateY(-1px);
+  box-shadow: 3px 3px 0 #654321;
+}
+
+.nextButton {
+  background: #c4704f;
+  color: white;
+}
+
+.nextButton:hover {
+  background: #a85a3f;
+  transform: translateY(-1px);
+  box-shadow: 3px 3px 0 #654321;
+}
+
+.closeButton:active,
+.nextButton:active {
+  transform: translateY(0);
+  box-shadow: 1px 1px 0 #654321;
+}
+
+.pageProgress {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: clamp(8px, 1.5vw, 12px);
+}
+
+.progressDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #cccccc;
+  border: 1px solid #999999;
+  transition: all 0.2s ease;
+}
+
+.progressDot.active {
+  background: #d4af37;
+  border-color: #b8860b;
+  box-shadow: 0 0 4px rgba(212, 175, 55, 0.5);
+}
+
+.paperTexture {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 24px,
+      rgba(139, 69, 19, 0.02) 24px,
+      rgba(139, 69, 19, 0.02) 25px
+    );
+  pointer-events: none;
+}
+
+.inkStain {
+  position: absolute;
+  width: clamp(20px, 3vw, 40px);
+  height: clamp(20px, 3vw, 40px);
+  background: radial-gradient(
+    circle,
+    rgba(139, 69, 19, 0.1) 0%,
+    rgba(139, 69, 19, 0.05) 50%,
+    transparent 100%
+  );
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .journalBook {
+    width: 95vw;
+    height: 85vh;
+  }
+  
+  .journalBinding {
+    width: 30px;
+  }
+  
+  .bindingRings {
+    gap: 30px;
+  }
+  
+  .ring {
+    width: 12px;
+    height: 12px;
+    border-width: 2px;
+  }
+  
+  .symbolsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .pageControls {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .journalOverlay {
+    padding: 8px;
+  }
+  
+  .journalBook {
+    width: 100vw;
+    height: 90vh;
+  }
+  
+  .symbolEntry {
+    flex-direction: column;
+    text-align: center;
+    gap: 4px;
+  }
+}
+
+/* Accessibility */
+.closeButton:focus,
+.nextButton:focus {
+  outline: 2px solid #4a90e2;
+  outline-offset: 2px;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .closeButton,
+  .nextButton,
+  .progressDot {
+    transition: none;
+  }
+  
+  .closeButton:hover,
+  .nextButton:hover {
+    transform: none;
+  }
+}

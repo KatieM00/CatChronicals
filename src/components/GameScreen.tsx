@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom'
+import { useEffect } from 'react'
 import { useGameState } from '../contexts/GameStateContext'
-import TombScene from './TombScene'
-import CatSprite from './CatSprite'
+import TombPage from './TombPage'
 import styles from '../styles/GameScreen.module.css'
 
 export default function GameScreen() {
@@ -11,48 +11,35 @@ export default function GameScreen() {
   const currentLocation = location || state.currentLocation || 'egypt-tomb'
 
   // Set current location if not already set
-  if (state.currentLocation !== currentLocation) {
-    dispatch({ type: 'CHANGE_LOCATION', location: currentLocation })
-  }
+  useEffect(() => {
+    if (state.currentLocation !== currentLocation) {
+      dispatch({ type: 'CHANGE_LOCATION', location: currentLocation })
+    }
+  }, [currentLocation, state.currentLocation, dispatch])
 
-  // Determine cat animation state based on game context
-  const getCatAnimationState = () => {
-    if (currentLocation === 'egypt-tomb' && state.completedLessons.length === 0) {
-      return 'confused' // First time in tomb
-    }
-    if (state.completedLessons.length > 0) {
-      return 'happy' // Made some progress
-    }
-    return 'idle'
-  }
+
 
   const renderScene = () => {
     switch (currentLocation) {
       case 'egypt-tomb':
       default:
-        return <TombScene />
+        return <TombPage onJournalPageCollected={(pageId) => console.log(`Journal page collected: ${pageId}`)} />
     }
   }
 
   return (
-    <div className={styles.gameContainer}>
-      {/* Scene Content */}
-      {renderScene()}
+    <div className={styles.container}>
+      <div className={styles.floatingWindow}>
+        {/* Scene Content */}
+        {renderScene()}
 
-      {/* Cat Sprite with animations */}
-      <div className={styles.catSpriteContainer}>
-        <CatSprite 
-          animationState={getCatAnimationState()}
-          size="medium"
-        />
-      </div>
-
-      {/* UI Overlay */}
-      <div className={styles.uiOverlay}>
-        <div className={styles.locationInfo}>Location: {currentLocation}</div>
-        <div className={styles.progressInfo}>
-          Lessons: {state.completedLessons.length}/3 | Journal:{' '}
-          {state.journalPagesFound.length}/12
+        {/* UI Overlay */}
+        <div className={styles.uiOverlay}>
+          <div className={styles.locationInfo}>Location: {currentLocation}</div>
+          <div className={styles.progressInfo}>
+            Lessons: {state.completedLessons.length}/3 | Journal:{' '}
+            {state.journalPagesFound.length}/12
+          </div>
         </div>
       </div>
     </div>

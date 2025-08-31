@@ -1,0 +1,291 @@
+/* Hieroglyphic Symbol Styles - Cozy Pixel Theme */
+
+.hieroglyphicSymbol {
+  display: inline-block;
+  position: relative;
+  background: var(--color-papyrus);
+  border: var(--border-width) solid var(--color-terracotta);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md);
+  margin: var(--spacing-sm);
+  text-align: center;
+  transition: all var(--animation-fast) var(--animation-ease);
+  box-shadow: var(--shadow-light);
+  user-select: none;
+  font-family: var(--font-pixel);
+  
+  /* Pixel-perfect rendering */
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+/* Size Variants */
+.small {
+  padding: var(--spacing-sm);
+  margin: var(--spacing-xs);
+}
+
+.medium {
+  padding: var(--spacing-md);
+  margin: var(--spacing-sm);
+}
+
+.large {
+  padding: var(--spacing-lg);
+  margin: var(--spacing-md);
+}
+
+/* Interactive States */
+.interactive {
+  cursor: pointer;
+}
+
+.interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
+  border-color: var(--color-highlight);
+  background: var(--color-sand);
+}
+
+.interactive:focus {
+  outline: 3px solid var(--color-highlight);
+  outline-offset: 2px;
+}
+
+.selected {
+  background: var(--color-gold);
+  border-color: var(--color-bronze);
+  box-shadow: var(--shadow-glow);
+}
+
+.draggable {
+  cursor: grab;
+}
+
+.draggable:active {
+  cursor: grabbing;
+}
+
+/* Symbol Container */
+.symbolContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Symbol Display */
+.symbol {
+  font-size: var(--font-size-xxl);
+  color: var(--color-terracotta);
+  font-weight: bold;
+  text-shadow: 2px 2px 0 var(--color-shadow);
+  line-height: 1;
+  font-family: var(--font-pixel);
+}
+
+.small .symbol {
+  font-size: var(--font-size-large);
+}
+
+.large .symbol {
+  font-size: 3rem;
+}
+
+/* Symbol Information */
+.symbolInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.meaning {
+  font-size: var(--font-size-small);
+  font-weight: bold;
+  color: var(--color-deep-blue);
+  text-transform: capitalize;
+  font-family: var(--font-pixel);
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.small .meaning {
+  font-size: var(--font-size-xs);
+}
+
+.large .meaning {
+  font-size: var(--font-size-medium);
+}
+
+.pronunciation {
+  font-size: var(--font-size-xs);
+  color: var(--color-stone);
+  font-style: italic;
+  font-family: var(--font-pixel);
+}
+
+.small .pronunciation {
+  font-size: 10px;
+}
+
+.large .pronunciation {
+  font-size: var(--font-size-small);
+}
+
+/* Selection Indicator */
+.selectionIndicator {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 24px;
+  height: 24px;
+  background: var(--color-success);
+  color: white;
+  border: var(--border-width) solid var(--color-deep-blue);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-xs);
+  font-weight: bold;
+  font-family: var(--font-pixel);
+  box-shadow: var(--shadow-medium);
+}
+
+/* Description */
+.description {
+  margin-top: var(--spacing-md);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--color-highlight);
+  font-size: var(--font-size-xs);
+  color: var(--color-deep-blue);
+  line-height: 1.4;
+  text-align: left;
+  font-family: var(--font-pixel);
+}
+
+/* Category-based Styling - Using game color palette */
+.animal {
+  border-color: var(--color-success);
+}
+
+.animal .symbol {
+  color: var(--color-success);
+}
+
+.nature {
+  border-color: var(--color-deep-blue);
+}
+
+.nature .symbol {
+  color: var(--color-deep-blue);
+}
+
+.body {
+  border-color: var(--color-warning);
+}
+
+.body .symbol {
+  color: var(--color-warning);
+}
+
+.building {
+  border-color: var(--color-stone);
+}
+
+.building .symbol {
+  color: var(--color-stone);
+}
+
+.object {
+  border-color: var(--color-bronze);
+}
+
+.object .symbol {
+  color: var(--color-bronze);
+}
+
+/* Hover Effects for Categories - Simplified for pixel theme */
+.animal.interactive:hover,
+.nature.interactive:hover,
+.body.interactive:hover,
+.building.interactive:hover,
+.object.interactive:hover {
+  background: var(--color-sand);
+}
+
+/* Animation for Drag and Drop - Pixel-style bounce */
+.hieroglyphicSymbol[draggable="true"]:hover {
+  animation: pixel-bounce var(--animation-medium) ease-in-out infinite alternate;
+}
+
+@keyframes pixel-bounce {
+  from {
+    transform: translateY(-2px);
+  }
+  to {
+    transform: translateY(-4px);
+  }
+}
+
+/* Accessibility Improvements */
+.hieroglyphicSymbol:focus-visible {
+  outline: 3px solid var(--color-highlight);
+  outline-offset: 2px;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .hieroglyphicSymbol {
+    transition: none;
+  }
+  
+  .interactive:hover {
+    transform: none;
+  }
+  
+  .hieroglyphicSymbol[draggable="true"]:hover {
+    animation: none;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hieroglyphicSymbol {
+    padding: var(--spacing-sm);
+    margin: var(--spacing-xs);
+  }
+  
+  .symbol {
+    font-size: var(--font-size-large);
+  }
+  
+  .meaning {
+    font-size: var(--font-size-xs);
+  }
+  
+  .pronunciation {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hieroglyphicSymbol {
+    padding: var(--spacing-xs);
+    margin: 2px;
+  }
+  
+  .symbol {
+    font-size: var(--font-size-medium);
+  }
+  
+  .meaning {
+    font-size: 10px;
+  }
+  
+  .pronunciation {
+    display: none; /* Hide pronunciation on very small screens */
+  }
+}

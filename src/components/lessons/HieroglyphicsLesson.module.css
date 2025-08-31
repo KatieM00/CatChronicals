@@ -1,0 +1,421 @@
+/* Hieroglyphics Lesson Styles - Task 15 Implementation */
+
+.hieroglyphicsLesson {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f4f1e8 0%, #e8dcc0 100%);
+  position: relative;
+  overflow-y: auto;
+}
+
+/* Lesson Header */
+.lessonHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+  color: white;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.headerContent {
+  flex: 1;
+}
+
+.headerContent h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.phaseIndicator {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.currentPhase {
+  font-size: 1rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.phaseProgress {
+  width: 200px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #ffd700 0%, #ffed4e 100%);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.closeButton {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.closeButton:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+/* Phase Navigation */
+.phaseNavigation {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.phaseStep {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  margin: 0 0.5rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.phaseStep::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -1rem;
+  width: 2rem;
+  height: 2px;
+  background: #ddd;
+  transform: translateY(-50%);
+}
+
+.phaseStep:last-child::after {
+  display: none;
+}
+
+.phaseStep.active {
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+  border: 2px solid #2196f3;
+}
+
+.phaseStep.completed {
+  background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+  border: 2px solid #4caf50;
+}
+
+.phaseStep.completed::after {
+  background: #4caf50;
+}
+
+.phaseStep.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.stepNumber {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #f5f5f5;
+  border: 2px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.phaseStep.active .stepNumber {
+  background: #2196f3;
+  border-color: #2196f3;
+  color: white;
+}
+
+.phaseStep.completed .stepNumber {
+  background: #4caf50;
+  border-color: #4caf50;
+  color: white;
+}
+
+.stepLabel {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #666;
+  text-transform: capitalize;
+}
+
+.phaseStep.active .stepLabel {
+  color: #2196f3;
+}
+
+.phaseStep.completed .stepLabel {
+  color: #4caf50;
+}
+
+/* Phase Content */
+.phaseContent {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Symbol Introduction */
+.symbolIntroduction {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.introHeader {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.introHeader h2 {
+  color: #8b4513;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+}
+
+.introHeader p {
+  color: #5d4037;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.symbolsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.symbolCard {
+  background: linear-gradient(135deg, #faf8f3 0%, #f0ead6 100%);
+  border: 2px solid #d4af37;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.symbolCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
+}
+
+.symbolDescription {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #5d4037;
+  line-height: 1.4;
+}
+
+.introActions {
+  text-align: center;
+}
+
+.continueButton {
+  background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(76, 175, 80, 0.3);
+}
+
+.continueButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
+
+/* Practice Container */
+.practiceContainer {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Lesson Stats */
+.lessonStats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid #ddd;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.statLabel {
+  font-size: 0.8rem;
+  color: #666;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.statValue {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .lessonHeader {
+    padding: 1rem;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  
+  .headerContent h1 {
+    font-size: 1.5rem;
+  }
+  
+  .phaseIndicator {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .phaseProgress {
+    width: 150px;
+  }
+  
+  .phaseNavigation {
+    padding: 1rem;
+    overflow-x: auto;
+  }
+  
+  .phaseStep {
+    margin: 0 0.25rem;
+    padding: 0.75rem;
+    min-width: 80px;
+  }
+  
+  .phaseStep::after {
+    display: none;
+  }
+  
+  .phaseContent {
+    padding: 1rem;
+  }
+  
+  .symbolsGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .lessonStats {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .lessonHeader {
+    padding: 0.75rem;
+  }
+  
+  .headerContent h1 {
+    font-size: 1.25rem;
+  }
+  
+  .phaseNavigation {
+    padding: 0.75rem;
+  }
+  
+  .phaseStep {
+    padding: 0.5rem;
+    margin: 0 0.125rem;
+  }
+  
+  .stepNumber {
+    width: 28px;
+    height: 28px;
+    font-size: 0.8rem;
+  }
+  
+  .stepLabel {
+    font-size: 0.7rem;
+  }
+  
+  .phaseContent {
+    padding: 0.75rem;
+  }
+  
+  .symbolIntroduction,
+  .practiceContainer {
+    padding: 1rem;
+  }
+  
+  .introHeader h2 {
+    font-size: 1.5rem;
+  }
+  
+  .continueButton {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+/* Accessibility Improvements */
+.closeButton:focus,
+.continueButton:focus {
+  outline: 3px solid #4a90e2;
+  outline-offset: 2px;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .phaseStep,
+  .symbolCard,
+  .continueButton,
+  .closeButton {
+    transition: none;
+  }
+  
+  .symbolCard:hover,
+  .continueButton:hover,
+  .closeButton:hover {
+    transform: none;
+  }
+}

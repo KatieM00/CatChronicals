@@ -1,35 +1,55 @@
-.gameContainer {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
+/* Outer wrapper */
+.container {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0b0b0b;
+  padding: var(--frame-gutter);
 }
 
-.catSpriteContainer {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  z-index: 10;
+/* Screen within a screen (16:9, responsive) */
+.floatingWindow {
+  width: min(
+    calc(100vw - (var(--frame-gutter) * 2)),
+    calc((100dvh - (var(--frame-gutter) * 2)) * 16 / 9)
+  );
+  aspect-ratio: 16 / 9;
+  
+  /* scale frame chrome with size */
+  border: max(2px, 0.35cqw) solid #333;
+  border-radius: max(8px, 1cqw);
+  box-shadow: 0 max(8px, 1.6cqw) max(40px, 4cqw) rgba(0,0,0,0.6);
+
+  overflow: hidden;
+  position: relative;
+
+  /* enable cqw/cqh inside */
+  container-type: inline-size;
 }
 
 .uiOverlay {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  background: rgba(0, 0, 0, 0.7);
+  top: clamp(10px, 1.5cqw, 20px);
+  right: clamp(10px, 1.5cqw, 20px);
+  background: rgba(0, 0, 0, 0.8);
   color: white;
-  padding: 1rem;
-  border-radius: 8px;
-  font-family: monospace;
-  z-index: 20;
+  padding: clamp(8px, 1cqw, 16px);
+  border-radius: max(4px, 0.5cqw);
+  font-family: var(--font-pixel);
+  font-size: clamp(10px, 1.2cqw, 14px);
+  z-index: var(--z-ui);
+  border: max(1px, 0.15cqw) solid rgba(255, 255, 255, 0.3);
 }
 
 .locationInfo {
-  margin-bottom: 0.5rem;
+  margin-bottom: clamp(4px, 0.5cqw, 8px);
   font-weight: bold;
+  color: var(--color-highlight);
 }
 
 .progressInfo {
-  font-size: 0.9rem;
+  font-size: clamp(8px, 1cqw, 12px);
   opacity: 0.9;
+  color: var(--color-sand);
 }

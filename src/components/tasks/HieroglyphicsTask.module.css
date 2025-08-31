@@ -1,0 +1,373 @@
+/* Hieroglyphics Task Styles - Cozy Pixel Theme */
+
+.taskOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--color-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-modal);
+  padding: var(--frame-gutter);
+}
+
+.taskWindow {
+  width: min(90vw, 600px);
+  max-height: 85vh;
+  background: var(--color-papyrus);
+  border: var(--border-width-thick) solid var(--color-terracotta);
+  border-radius: var(--border-radius);
+  box-shadow: 
+    var(--shadow-heavy),
+    inset 0 0 0 var(--border-width) var(--color-highlight);
+  overflow-y: auto;
+  font-family: var(--font-pixel);
+  
+  /* Pixel-perfect styling */
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+.taskHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md);
+  background: var(--color-terracotta);
+  color: white;
+  border-bottom: var(--border-width) solid var(--color-stone);
+}
+
+.taskHeader h2 {
+  font-family: var(--font-pixel);
+  font-size: var(--font-size-large);
+  font-weight: bold;
+  margin: 0;
+  text-shadow: 2px 2px 0 var(--color-shadow);
+}
+
+.closeButton {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  width: clamp(28px, 4vw, 36px);
+  height: clamp(28px, 4vw, 36px);
+  font-size: clamp(14px, 2.5vw, 18px);
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+.closeButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.taskContext {
+  padding: clamp(12px, 2vw, 16px);
+  background: rgba(212, 175, 55, 0.1);
+  border-bottom: 1px solid #d4af37;
+}
+
+.description {
+  font-family: 'Courier New', monospace;
+  font-size: clamp(12px, 2.2vw, 14px);
+  color: #2c2c2c;
+  font-weight: bold;
+  margin: 0 0 8px 0;
+}
+
+.contextStory {
+  font-family: 'Courier New', monospace;
+  font-size: clamp(11px, 2vw, 13px);
+  color: #666666;
+  font-style: italic;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.instruction {
+  padding: clamp(12px, 2vw, 16px);
+  background: rgba(196, 112, 79, 0.1);
+  border-bottom: 1px solid #cccccc;
+  text-align: center;
+}
+
+.instruction strong {
+  font-family: 'Courier New', monospace;
+  font-size: clamp(12px, 2.2vw, 16px);
+  color: #8b4513;
+}
+
+.sequenceDisplay {
+  padding: clamp(12px, 2vw, 16px);
+  background: white;
+  border-bottom: 1px solid #cccccc;
+}
+
+.sequenceDisplay h3 {
+  font-family: 'Courier New', monospace;
+  font-size: clamp(12px, 2.2vw, 16px);
+  color: #2c2c2c;
+  font-weight: bold;
+  margin: 0 0 8px 0;
+  text-align: center;
+}
+
+.selectedSequence {
+  display: flex;
+  justify-content: center;
+  gap: clamp(4px, 1vw, 8px);
+  flex-wrap: wrap;
+}
+
+.selectedSlot {
+  width: clamp(40px, 6vw, 50px);
+  height: clamp(40px, 6vw, 50px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(76, 175, 80, 0.1);
+  border: 2px solid #4caf50;
+  border-radius: 4px;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+.emptySlot {
+  width: clamp(40px, 6vw, 50px);
+  height: clamp(40px, 6vw, 50px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f5f5;
+  border: 2px dashed #cccccc;
+  border-radius: 4px;
+}
+
+.slotNumber {
+  font-family: 'Courier New', monospace;
+  font-size: clamp(12px, 2vw, 16px);
+  font-weight: bold;
+  color: #999999;
+}
+
+.symbolsSection {
+  padding: clamp(12px, 2vw, 16px);
+  background: white;
+}
+
+.symbolsSection h3 {
+  font-family: 'Courier New', monospace;
+  font-size: clamp(12px, 2.2vw, 16px);
+  color: #2c2c2c;
+  font-weight: bold;
+  margin: 0 0 12px 0;
+  text-align: center;
+}
+
+.symbolsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(clamp(60px, 8vw, 80px), 1fr));
+  gap: clamp(6px, 1vw, 8px);
+  justify-items: center;
+}
+
+.symbolButton {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 2px;
+  border-radius: 4px;
+}
+
+.symbolButton:hover:not(.used):not(:disabled) {
+  background: rgba(196, 112, 79, 0.1);
+  transform: translateY(-2px);
+}
+
+.symbolButton.used {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.symbolButton:disabled {
+  cursor: not-allowed;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: clamp(8px, 1.5vw, 12px);
+  padding: clamp(12px, 2vw, 16px);
+  background: rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid #cccccc;
+}
+
+.controlButton {
+  font-family: 'Courier New', monospace;
+  font-size: clamp(10px, 1.8vw, 12px);
+  font-weight: bold;
+  padding: clamp(4px, 0.8vw, 6px) clamp(8px, 1.5vw, 12px);
+  background: #6c757d;
+  color: white;
+  border: 2px solid #495057;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 2px 2px 0 #343a40;
+}
+
+.controlButton:hover:not(:disabled) {
+  background: #5a6268;
+  transform: translateY(-1px);
+  box-shadow: 3px 3px 0 #343a40;
+}
+
+.controlButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.controlButton:active {
+  transform: translateY(0);
+  box-shadow: 1px 1px 0 #343a40;
+}
+
+.feedback {
+  margin: clamp(8px, 1.5vw, 12px);
+  padding: clamp(8px, 1.5vw, 12px);
+  font-family: 'Courier New', monospace;
+  font-size: clamp(11px, 2vw, 14px);
+  font-weight: bold;
+  text-align: center;
+  border: 2px solid;
+  border-radius: 4px;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+.feedback.success {
+  background: rgba(76, 175, 80, 0.1);
+  color: #2e7d32;
+  border-color: #4caf50;
+}
+
+.feedback.error {
+  background: rgba(244, 67, 54, 0.1);
+  color: #c62828;
+  border-color: #f44336;
+}
+
+.hint {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(6px, 1vw, 8px);
+  margin: clamp(8px, 1.5vw, 12px);
+  padding: clamp(8px, 1.5vw, 12px);
+  background: rgba(255, 193, 7, 0.1);
+  border: 2px solid #ffc107;
+  border-radius: 4px;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+.hintIcon {
+  font-size: clamp(14px, 2.5vw, 18px);
+  flex-shrink: 0;
+}
+
+.hintText {
+  font-family: 'Courier New', monospace;
+  font-size: clamp(10px, 1.8vw, 12px);
+  color: #2c2c2c;
+  line-height: 1.4;
+}
+
+.progress {
+  display: flex;
+  justify-content: space-between;
+  padding: clamp(8px, 1.5vw, 12px);
+  background: rgba(196, 112, 79, 0.1);
+  border-top: 1px solid #cccccc;
+  font-family: 'Courier New', monospace;
+  font-size: clamp(10px, 1.8vw, 12px);
+  font-weight: bold;
+  color: #8b4513;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .taskWindow {
+    width: 95vw;
+    max-height: 90vh;
+  }
+  
+  .symbolsGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .controls {
+    flex-direction: column;
+    gap: 6px;
+  }
+  
+  .progress {
+    flex-direction: column;
+    gap: 4px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .taskOverlay {
+    padding: 8px;
+  }
+  
+  .taskWindow {
+    width: 100vw;
+    max-height: 95vh;
+  }
+  
+  .selectedSequence {
+    gap: 2px;
+  }
+  
+  .selectedSlot,
+  .emptySlot {
+    width: clamp(35px, 8vw, 40px);
+    height: clamp(35px, 8vw, 40px);
+  }
+  
+  .symbolsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Accessibility */
+.closeButton:focus,
+.controlButton:focus,
+.symbolButton:focus {
+  outline: 2px solid #4a90e2;
+  outline-offset: 2px;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .closeButton,
+  .controlButton,
+  .symbolButton {
+    transition: none;
+  }
+  
+  .closeButton:hover,
+  .controlButton:hover,
+  .symbolButton:hover {
+    transform: none;
+  }
+}
